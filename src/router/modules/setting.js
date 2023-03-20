@@ -5,7 +5,7 @@ const route = [
     path: '/setting',
     component: Layout,
     redirect: '/setting/chart',
-    meta: { title: '權限管理', icon: 'el-icon-pie-chart' },
+    meta: { title: '系统管理', icon: 'el-icon-setting' },
     alwayShow: true,
     children: [
       {

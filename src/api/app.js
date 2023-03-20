@@ -58,6 +58,7 @@ export function delAdmin(data) {
     data
   })
 }
+// 改密碼
 export function passwordChange(data) {
   return request({
     url: '/admins/passwordChange',
