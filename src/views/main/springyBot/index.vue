@@ -129,7 +129,7 @@ export default defineComponent({
     const handleStart = (row) => {
       start(row).then(res=>{
         console.log(res)
-        location.reload()
+        getTableData(true)
       })
     }
     const handleStop = (row) => {
