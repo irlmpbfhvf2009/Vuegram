@@ -6,7 +6,6 @@ export const selectData = [
 ]
 
 export const radioData = [
-  { value: 1, label: '今天' },
-  { value: 2, label: '明天' },
-  { value: 3, label: '后天' },
+  { value: true, label: '开启' },
+  { value: false, label: '关闭' },
 ]

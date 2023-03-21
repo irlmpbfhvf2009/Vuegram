@@ -1,12 +1,45 @@
 <template>
   <Layer :layer="layer" @confirm="submit" ref="layerDom">
-    <el-form :model="form" ref="ruleForm" label-width="120px" style="margin-right:30px;">
+    <el-form :model="form" ref="ruleForm" label-width="230px" style="margin-right:100px;">
       <el-form-item label="Username：" prop="username">
         <el-input v-model="form.username" placeholder="请输入名称"></el-input>
       </el-form-item>
       <el-form-item label="Token：" prop="token">
         <el-input v-model="form.token"  placeholder="请输入Token"></el-input>
       </el-form-item>
+      <el-form-item label="邀请好友发言限制：" prop="inviteFriendsSet">
+        <el-radio-group v-model="form.inviteFriendsSet">
+          <el-radio v-for="item in radioData" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
+        </el-radio-group>
+        <el-form-item label="指定人数" prop="inviteFriendsQuantity">
+          <el-input v-model="form.inviteFriendsQuantity" ></el-input>
+        </el-form-item>
+        <el-form-item label="重置天数" prop="inviteFriendsAutoClearTime">
+          <el-input v-model="form.inviteFriendsAutoClearTime" ></el-input>
+        </el-form-item>
+      </el-form-item>
+      <el-form-item label="关注频道发言限制：" prop="followChannelSet">
+        <el-radio-group v-model="form.followChannelSet">
+          <el-radio v-for="item in radioData" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
+        </el-radio-group>
+      </el-form-item>
+      <el-form-item label="系统消息删除：" prop="deleteSeconds">
+        <el-input v-model="form.deleteSeconds"  placeholder="请输入秒数"></el-input>
+      </el-form-item>
+        <el-form-item label="邀请奖金功能：" prop="invitationBonusSet">
+          <el-radio-group v-model="form.invitationBonusSet">
+            <el-radio v-for="item in radioData" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
+          </el-radio-group>
+          <el-form-item label="指定人数：" prop="inviteMembers">
+            <el-input v-model="form.inviteMembers" ></el-input>
+          </el-form-item>
+          <el-form-item label="每次获得奖金：" prop="inviteEarnedOutstand">
+            <el-input v-model="form.inviteEarnedOutstand" ></el-input>
+          </el-form-item>
+          <el-form-item label="联系人：" prop="contactPerson">
+            <el-input v-model="form.contactPerson" ></el-input>
+          </el-form-item>
+        </el-form-item>
     </el-form>
   </Layer>
 </template>
@@ -38,6 +71,16 @@ export default defineComponent({
     let form = ref({
       token: '',
       username:'',
+      state:false,
+      inviteFriendsSet:false,
+      followChannelSet:false,
+      invitationBonusSet:false,
+      deleteSeconds:6,
+      inviteFriendsAutoClearTime:3,
+      inviteFriendsQuantity:2,
+      inviteMembers:6,
+      inviteEarnedOutstand:1.2,
+      contactPerson:'@aa',
     })
     init()
     function init() { // 用于判断新增还是编辑功能
