@@ -31,12 +31,12 @@ const route = [
     hideMenu: true,
     meta: { title: '登入', hideTabs: true }
   },
-  {
-    path: '/chat',
-    component: createNameComponent(() => import('@/views/main/chat_client/index.vue')),
-    hideMenu: true,
-    meta: { title: '測試', hideTabs: true }
-  },
+  // {
+  //   path: '/chat',
+  //   component: createNameComponent(() => import('@/views/main/chat_client/index.vue')),
+  //   hideMenu: true,
+  //   meta: { title: '測試', hideTabs: true }
+  // },
   {
     // 找不到路由重定向到404页面
     path: "/:pathMatch(.*)",

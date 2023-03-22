@@ -1,7 +1,7 @@
 <template>
   <Layer :layer="layer" @confirm="submit" ref="layerDom">
     <el-form :model="form" ref="ruleForm" label-width="230px" style="margin-right:100px;">
-      <el-form-item label="Username：" prop="username">
+      <el-form-item label="名称：" prop="username">
         <el-input v-model="form.username" placeholder="请输入名称"></el-input>
       </el-form-item>
       <el-form-item label="Token：" prop="token">
