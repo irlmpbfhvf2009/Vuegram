@@ -10,9 +10,14 @@ const route = [
     children: [
       {
         path: 'springyBot',
-        component: createNameComponent(() => import('@/views/main/springyBot/index.vue')),
+        component: createNameComponent(() => import('@/views/main/springyBot/operatingStatus/index.vue')),
         meta: { title: '运作状态', cache: true, roles: ['admin'] }
-      }
+      },
+      {
+        path: 'jobManagement',
+        component: createNameComponent(() => import('@/views/main/springyBot/jobManagement/index.vue')),
+        meta: { title: '招聘和求职信息管理', cache: true, roles: ['admin'] }
+      },
     ]
   }
 ]

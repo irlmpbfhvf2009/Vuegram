@@ -47,7 +47,7 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import { addBot ,updateBot} from '@/api/bot'
-import { selectData, radioData } from './enum'
+import { selectData, radioData } from '../operatingStatus/enum'
 import Layer from '@/components/layer/index.vue'
 export default defineComponent({
   components: {
@@ -133,10 +133,9 @@ export default defineComponent({
     updateForm(params) {
       updateBot(params)
       .then(res => {
-        console.log(res)
         this.$message({
           type: 'success',
-          message: '编辑成功'
+          message: res.msg
         })
         this.$emit('getTableData', false)
         this.layerDom && this.layerDom.close()

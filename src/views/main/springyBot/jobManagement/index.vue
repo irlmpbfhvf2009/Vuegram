@@ -86,7 +86,6 @@ export default defineComponent({
       }
       getAllBot(params)
       .then(res => {
-        console.log(res)
         tableData.value = res.data.list
         page.total = Number(res.data.pager.total)
       })
