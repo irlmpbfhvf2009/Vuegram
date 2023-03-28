@@ -17,7 +17,7 @@ import { createNameComponent } from './createNode'
 import Dashboard from './modules/dashboard'
 import SpringyBot from './modules/springyBot'
 import Setting from './modules/setting'
-// import Pages from './modules/pages'
+import Pages from './modules/pages'
 import System from './modules/system'
 
 let modules = [
@@ -33,7 +33,7 @@ const router = createRouter({
 let asyncRoutes = [
   ...Dashboard,
   ...SpringyBot,
-  // ...Pages,
+  ...Pages,
   ...Setting,
 ]
 // 动态路由的权限新增，供登录后调用
@@ -96,7 +96,7 @@ if (store.state.user.token) {
   addRoutes()
 }
 
-const whiteList = ['/login', '/chat']
+const whiteList = ['/login','jobForm']
 
 router.beforeEach((to, _from, next) => {
   NProgress.start();

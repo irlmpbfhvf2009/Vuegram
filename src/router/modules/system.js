@@ -31,12 +31,13 @@ const route = [
     hideMenu: true,
     meta: { title: '登入', hideTabs: true }
   },
-  // {
-  //   path: '/chat',
-  //   component: createNameComponent(() => import('@/views/main/chat_client/index.vue')),
-  //   hideMenu: true,
-  //   meta: { title: '測試', hideTabs: true }
-  // },
+  {
+    path: '/jobForm',
+    component: createNameComponent(() => import('@/views/main/springyBot/jobManagement/jobForm.vue')),
+    hideMenu: true,
+    meta: { title: '工作表單', hideTabs: true },
+    props: { query: true },
+  },
   {
     // 找不到路由重定向到404页面
     path: "/:pathMatch(.*)",
