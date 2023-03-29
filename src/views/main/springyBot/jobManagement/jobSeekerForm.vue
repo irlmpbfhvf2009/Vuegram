@@ -54,7 +54,7 @@
 <script>
 import { defineComponent, ref, reactive } from 'vue'
 import { useRoute } from "vue-router";
-import { selectData, radioData, nativePlace } from './enum'
+import { radioData, nativePlace } from './enum'
 export default defineComponent({
     components: {
 
@@ -62,15 +62,11 @@ export default defineComponent({
     setup() {
         const route = useRoute()
         let form = ref({
+            userId : route.query.userId,
             name: '',
             gender: '',
             radioData: '',
         })
-        const userId = route.query.userId;
-        const username = route.query.username;
-        console.log("userId=" + userId)
-        console.log("username=" + username)
-
 
         return {
             form,
