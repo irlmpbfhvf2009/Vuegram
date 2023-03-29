@@ -35,6 +35,7 @@
 import { defineComponent, ref, reactive } from 'vue'
 import { useRoute } from "vue-router";
 import { radioData, nativePlace } from './enum'
+import { addJobPosting } from '@/api/job'
 export default defineComponent({
     components: {
 
@@ -43,6 +44,7 @@ export default defineComponent({
         const route = useRoute()
         let form = ref({
             userId : route.query.userId,
+            botId : route.query.botId,
             company: '',
             position: '',
             baseSalary: '',
@@ -61,8 +63,19 @@ export default defineComponent({
     },
     methods: {
         submit() {
+            let params = this.form;
+            this.addForm(params)
 
-        }
+        },
+        addForm(params){
+            addJobPosting(params)
+            .then(res => {
+                this.$message({
+                    type:'success',
+                    message:'asd'
+                })
+            })
+        },
     },
 })
 </script>

@@ -63,6 +63,7 @@ export default defineComponent({
         const route = useRoute()
         let form = ref({
             userId : route.query.userId,
+            botId : route.query.botId,
             name: '',
             gender: '',
             radioData: '',
@@ -76,7 +77,6 @@ export default defineComponent({
     },
     methods: {
         submit() {
-
         }
     },
 })
