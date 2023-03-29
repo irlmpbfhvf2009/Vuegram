@@ -96,7 +96,7 @@ if (store.state.user.token) {
   addRoutes()
 }
 
-const whiteList = ['/login','jobSeekerForm','jobPostingForm']
+const whiteList = ['/login','/jobSeekerForm','/jobPostingForm']
 
 router.beforeEach((to, _from, next) => {
   NProgress.start();

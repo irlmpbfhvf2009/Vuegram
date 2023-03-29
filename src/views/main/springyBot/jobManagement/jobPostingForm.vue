@@ -72,7 +72,7 @@ export default defineComponent({
             .then(res => {
                 this.$message({
                     type:'success',
-                    message:'asd'
+                    message:res.msg
                 })
             })
         },
