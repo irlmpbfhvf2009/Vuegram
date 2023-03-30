@@ -62,8 +62,7 @@ export default defineComponent({
     setup() {
         const route = useRoute()
         let form = ref({
-            userId : route.query.userId,
-            botId : route.query.botId,
+            ub : route.query.ub,
             name: '',
             gender: '',
             radioData: '',

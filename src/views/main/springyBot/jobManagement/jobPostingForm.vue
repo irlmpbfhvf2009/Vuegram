@@ -4,7 +4,7 @@
             <el-input v-model="form.company" placeholder="请输入公司名称"></el-input>
         </el-form-item>
         <el-form-item label="职位名称：" prop="position">
-            <el-input v-model.number="form.position" placeholder="请输入职位名称"></el-input>
+            <el-input v-model="form.position" placeholder="请输入职位名称"></el-input>
         </el-form-item>
         <el-form-item label="底薪：" prop="baseSalary">
             <el-input v-model="form.baseSalary" placeholder="请输入底薪"></el-input>
@@ -32,10 +32,10 @@
 
 
 <script>
-import { defineComponent, ref, reactive } from 'vue'
+import { defineComponent, ref, reactive,onMounted   } from 'vue'
 import { useRoute } from "vue-router";
 import { radioData, nativePlace } from './enum'
-import { addJobPosting } from '@/api/job'
+import { addJobPosting,decryptedUbWithJobPosting } from '@/api/job'
 export default defineComponent({
     components: {
 
@@ -43,8 +43,8 @@ export default defineComponent({
     setup() {
         const route = useRoute()
         let form = ref({
-            userId : route.query.userId,
-            botId : route.query.botId,
+            userId : '',
+            botId : '',
             company: '',
             position: '',
             baseSalary: '',
@@ -53,6 +53,23 @@ export default defineComponent({
             requirements: '',
             location: '',
             flightNumber: '',
+        })
+
+        onMounted(() => {
+            decryptedUbWithJobPosting({ub:decodeURIComponent(route.query.ub)})
+                .then(res => {
+                    console.log(res.data)
+                    form.value.userId = res.data.userId
+                    form.value.botId = res.data.botId
+                    form.value.company = res.data.company
+                    form.value.position = res.data.position
+                    form.value.baseSalary = res.data.baseSalary
+                    form.value.commission = res.data.commission
+                    form.value.workTime = res.data.workTime
+                    form.value.requirements = res.data.requirements
+                    form.value.location = res.data.location
+                    form.value.flightNumber = res.data.flightNumber
+                })
         })
 
         return {

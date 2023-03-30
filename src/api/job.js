@@ -7,3 +7,10 @@ export function addJobPosting(data) {
       data,
     })
   }
+export function decryptedUbWithJobPosting(data) {
+    return request({
+      url: '/jobManagement/decryptedUbWithJobPosting',
+      method: 'post',
+      data,
+    })
+  }

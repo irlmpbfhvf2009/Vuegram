@@ -6,7 +6,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import store from '@/store'
 import NProgress from '@/utils/system/nprogress'
-import { changeTitle } from '@/utils/system/title'
+import { changeTitle,formTitle } from '@/utils/system/title'
 
 // 动态路由相关引入数据
 import Layout from '@/layout/index.vue'
@@ -101,7 +101,8 @@ const whiteList = ['/login','/jobSeekerForm','/jobPostingForm']
 router.beforeEach((to, _from, next) => {
   NProgress.start();
   if (store.state.user.token || whiteList.indexOf(to.path) !== -1) {
-    to.meta.title ? (changeTitle(to.meta.title)) : ""; // 动态title
+    to.meta.title ? (formTitle(to.meta.title)) : ""; // 动态title
+    // to.meta.title ? (changeTitle(to.meta.title)) : ""; // 动态title
     next()
   } else {
     next("/login"); // 全部重定向到登录页
