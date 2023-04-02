@@ -32,14 +32,11 @@
 
 
 <script>
-import { defineComponent, ref, reactive,onMounted   } from 'vue'
+import { defineComponent, ref,onMounted   } from 'vue'
 import { useRoute } from "vue-router";
-import { radioData, nativePlace } from './enum'
 import { addJobPosting,decryptedUbWithJobPosting } from '@/api/job'
 export default defineComponent({
-    components: {
 
-    },
     setup() {
         const route = useRoute()
         let form = ref({
@@ -58,7 +55,6 @@ export default defineComponent({
         onMounted(() => {
             decryptedUbWithJobPosting({ub:decodeURIComponent(route.query.ub)})
                 .then(res => {
-                    console.log(res.data)
                     form.value.userId = res.data.userId
                     form.value.botId = res.data.botId
                     form.value.company = res.data.company
@@ -74,8 +70,6 @@ export default defineComponent({
 
         return {
             form,
-            radioData,
-            nativePlace,
         }
     },
     methods: {

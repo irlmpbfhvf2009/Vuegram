@@ -33,10 +33,10 @@
             <el-input v-model="form.targetPosition" placeholder="请输入目标职位"></el-input>
         </el-form-item>
         <el-form-item label="手上的资源：" prop="resources">
-            <el-input  v-model="form.resources" placeholder="请输入手上的资源"></el-input>
+            <el-input v-model="form.resources" placeholder="请输入手上的资源"></el-input>
         </el-form-item>
         <el-form-item label="期望薪资：" prop="expectedSalary">
-            <el-input  v-model.number="form.expectedSalary" placeholder="请输入期望薪资" type="number"></el-input>
+            <el-input v-model.number="form.expectedSalary" placeholder="请输入期望薪资" type="number"></el-input>
         </el-form-item>
         <el-form-item label="工作经历：" prop="workExperience">
             <el-input v-model="form.workExperience" placeholder="请输入工作经历，限50字以内"></el-input>
@@ -52,22 +52,47 @@
 
 
 <script>
-import { defineComponent, ref, reactive } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
 import { useRoute } from "vue-router";
 import { radioData, nativePlace } from './enum'
+import { addJobSeeker, decryptedUbWithJobSeeker } from '@/api/job'
 export default defineComponent({
-    components: {
 
-    },
     setup() {
         const route = useRoute()
         let form = ref({
-            ub : route.query.ub,
             name: '',
             gender: '',
-            radioData: '',
+            dateOfBirth: '',
+            age:'',
+            nationality:'',
+            education:'',
+            skills:'',
+            targetPosition:'',
+            resources:'',
+            expectedSalary:'',
+            workExperience:'',
+            selfIntroduction:'',
         })
-
+        onMounted(() => {
+            decryptedUbWithJobSeeker({ ub: decodeURIComponent(route.query.ub) })
+                .then(res => {
+                    form.value.userId = res.data.userId
+                    form.value.botId = res.data.botId
+                    form.value.name = res.data.name
+                    form.value.gender = res.data.gender
+                    form.value.dateOfBirth = res.data.dateOfBirth
+                    form.value.age = res.data.age
+                    form.value.nationality = res.data.nationality
+                    form.value.education = res.data.education
+                    form.value.skills = res.data.skills
+                    form.value.targetPosition = res.data.targetPosition
+                    form.value.resources = res.data.resources
+                    form.value.expectedSalary = res.data.expectedSalary
+                    form.value.workExperience = res.data.workExperience
+                    form.value.selfIntroduction = res.data.selfIntroduction
+                })
+        })
         return {
             form,
             radioData,
@@ -76,7 +101,18 @@ export default defineComponent({
     },
     methods: {
         submit() {
-        }
+            let params = this.form;
+            this.addForm(params)
+        },
+        addForm(params) {
+            addJobSeeker(params)
+                .then(res => {
+                    this.$message({
+                        type: 'success',
+                        message: res.msg
+                    })
+                })
+        },
     },
 })
 </script>
