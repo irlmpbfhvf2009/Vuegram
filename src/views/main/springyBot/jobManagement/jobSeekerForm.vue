@@ -3,16 +3,16 @@
         <el-form-item label="姓名：" prop="name">
             <el-input v-model="form.name" placeholder="请输入姓名"></el-input>
         </el-form-item>
-        <el-form-item label="性別：">
-            <el-radio-group v-model="form.value">
-                <el-radio v-for="item in radioData" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
+        <el-form-item label="性別：" prop="gender">
+            <el-radio-group v-model="form.gender">
+                <el-radio v-for="item in radioData" :key="item.label" :label="item.label">{{ item.label }}</el-radio>
             </el-radio-group>
         </el-form-item>
         <el-form-item label="出生日期：" prop="dateOfBirth">
             <el-date-picker type="date" placeholder="请选择出生日期" v-model="form.dateOfBirth"></el-date-picker>
         </el-form-item>
-        <el-form-item label="年龄：" v-model.number="form.age" type="number" prop="age">
-            <el-input></el-input>
+        <el-form-item label="年龄：" prop="age">
+            <el-input v-model="form.age" type="number"></el-input>
         </el-form-item>
         <el-form-item label="国籍：" prop="nationality">
             <el-select v-model="form.nationality" placeholder="请选择国籍" clearable>
@@ -21,7 +21,7 @@
             </el-select>
         </el-form-item>
         <el-form-item label="学历：" prop="education">
-            <el-select v-model="form.education" placeholder="请选择学历">
+            <el-select v-model="form.education" placeholder="请选择学历" clearable>
                 <el-option v-for="item in educationOptions" :key="item.value" :label="item.label" :value="item.value">
                 </el-option>
             </el-select>
@@ -54,7 +54,7 @@
 <script>
 import { defineComponent, ref, onMounted } from 'vue'
 import { useRoute } from "vue-router";
-import { radioData, nativePlace } from './enum'
+import { radioData, nativePlace,educationOptions } from './enum'
 import { addJobSeeker, decryptedUbWithJobSeeker } from '@/api/job'
 export default defineComponent({
 
@@ -97,6 +97,7 @@ export default defineComponent({
             form,
             radioData,
             nativePlace,
+            educationOptions,
         }
     },
     methods: {

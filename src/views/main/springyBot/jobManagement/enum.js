@@ -1,14 +1,18 @@
-export const selectData = [
-  { value: 1, label: '运动' },
-  { value: 2, label: '健身' },
-  { value: 3, label: '跑酷' },
-  { value: 4, label: '街舞' }
-]
-
 
 export const radioData = [
   { value: 1, label: '男' },
   { value: 0, label: '女' },
+]
+
+export const educationOptions =[
+  { value: 0, label: '小学教育' },
+  { value: 1, label: '初中教育' },
+  { value: 2, label: '高中教育' },
+  { value: 3, label: '中等职业教育' },
+  { value: 4, label: '高等职业教育' },
+  { value: 5, label: '大学本科' },
+  { value: 6, label: '硕士研究生教育' },
+  { value: 7, label: '博士研究生教育' },
 ]
 
 export const nativePlace = [
