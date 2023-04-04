@@ -17,12 +17,12 @@
         <el-form-item label="国籍：" prop="nationality">
             <el-select v-model="form.nationality" placeholder="请选择国籍" clearable>
                 <el-option v-for="item in nativePlace" :key="item.value" :label="item.label"
-                    :value="item.value"></el-option>
+                    :value="item.label"></el-option>
             </el-select>
         </el-form-item>
         <el-form-item label="学历：" prop="education">
             <el-select v-model="form.education" placeholder="请选择学历" clearable>
-                <el-option v-for="item in educationOptions" :key="item.value" :label="item.label" :value="item.value">
+                <el-option v-for="item in educationOptions" :key="item.label" :label="item.label" :value="item.label">
                 </el-option>
             </el-select>
         </el-form-item>
