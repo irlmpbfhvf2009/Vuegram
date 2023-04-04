@@ -9,8 +9,9 @@
             </el-radio-group>
         </el-form-item>
         <el-form-item label="出生日期：" prop="dateOfBirth">
-            <el-date-picker type="date" placeholder="请选择出生日期" v-model="form.dateOfBirth"></el-date-picker>
+            <el-date-picker type="date" :default-value="1980-12-30" v-model="form.dateOfBirth" value-format="YYYY-MM-DD" placeholder="请选择出生日期"></el-date-picker>
         </el-form-item>
+        <div class="demonstration">值：{{ form.dateOfBirth }}</div>
         <el-form-item label="年龄：" prop="age">
             <el-input v-model="form.age" type="number"></el-input>
         </el-form-item>

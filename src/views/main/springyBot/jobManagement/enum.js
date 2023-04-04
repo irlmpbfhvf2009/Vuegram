@@ -20,7 +20,7 @@ export const nativePlace = [
   { value: 12, label: "天津" },
   { value: 13, label: "河北" },
   { value: 14, label: "山西" },
-  { value: 15, label: "内蒙古" },
+  { value: 15, label: "內蒙古" },
   { value: 21, label: "辽宁" },
   { value: 22, label: "吉林" },
   { value: 23, label: "黑龙江" },
