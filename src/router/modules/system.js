@@ -33,14 +33,14 @@ const route = [
   },
   {
     path: '/jobSeekerForm',
-    component: createNameComponent(() => import('@/views/main/springyBot/jobManagement/jobSeekerForm.vue')),
+    component: createNameComponent(() => import('@/views/main/springyBot/jobManagement/form/jobSeekerForm.vue')),
     hideMenu: true,
     meta: { title: '求职表单', hideTabs: true },
     props: { query: true },
   },
   {
     path: '/jobPostingForm',
-    component: createNameComponent(() => import('@/views/main/springyBot/jobManagement/jobPostingForm.vue')),
+    component: createNameComponent(() => import('@/views/main/springyBot/jobManagement/form/jobPostingForm.vue')),
     hideMenu: true,
     meta: { title: '招聘表单', hideTabs: true },
     props: { query: true },
