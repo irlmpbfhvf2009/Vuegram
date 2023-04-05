@@ -2,11 +2,6 @@
   <div class="category">
     <div class="header-box">
       <h2>组织管理</h2>
-      <!-- <el-input
-        v-model="input"
-        placeholder="请输入内容"
-        @input="searchData(true)"
-      ></el-input> -->
     </div>
     <div class="list system-scrollbar">
       <el-tree
@@ -48,7 +43,7 @@ export default defineComponent({
       });
     };
     const handleNodeClick = (row) => {
-      // console.log(row)
+      console.log(row)
       active.value = row;
     };
     getTreeData();
