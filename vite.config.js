@@ -9,8 +9,6 @@ const pathResolve = (dir) => {
 const alias = {
   '@': pathResolve("src")
 }
-
-// https://vitejs.dev/config/
 export default ({ command }) => {
   const prodMock = true;
   return {
