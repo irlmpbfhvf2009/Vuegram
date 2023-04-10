@@ -21,7 +21,9 @@ export default ({ command }) => {
       host: '0.0.0.0',
       open: true,
       proxy: { // 代理配置
-        '/dev': 'http://localhost:9090'
+        '/dev': 'http://rcc.ddb99.vip:18889/'
+        // '/dev': 'http://localhost:8888'
+
         // '/api' : {
         //   target: 'http://127.0.0.1:5555',
         //   changeOrigin: true,
