@@ -1,5 +1,6 @@
 import vue from '@vitejs/plugin-vue'
-import { viteMockServe } from 'vite-plugin-mock'
+import { defineConfig } from 'vite'
+// import { viteMockServe } from 'vite-plugin-mock'
 import { resolve } from 'path'
 
 const pathResolve = (dir) => {
@@ -9,26 +10,27 @@ const pathResolve = (dir) => {
 const alias = {
   '@': pathResolve("src")
 }
-export default ({ command }) => {
-  const prodMock = true;
+export default defineConfig => {
+// export default ({ command }) => {
+  // const prodMock = true;
   return {
     base: './',
     resolve: {
       alias
     },
     server: {
-      port: 3002,
-      host: '0.0.0.0',
-      open: true,
+      host: "0.0.0.0",
+      prot: 3002,
+      open: false,
+      https: false,
       proxy: { // 代理配置
-        '/dev': 'http://rcc.ddb99.vip:18889/'
-        // '/dev': 'http://localhost:8888'
-
-        // '/api' : {
-        //   target: 'http://127.0.0.1:5555',
-        //   changeOrigin: true,
-        //   rewrite: (path) => path.replace(/^\/api/,'')
-        // },
+        '/app': {
+          target : 'http://localhost:8888',
+          // target : 'http://rcc.ddb99.vip:18889',
+          changeOrigin: true,
+          ws: true,
+          // rewrite: (path) => path.replace(/^\/dev-api/,'')
+        }
       },
     },
     build: {
@@ -42,17 +44,17 @@ export default ({ command }) => {
     },
     plugins: [
       vue(),
-      viteMockServe({
-        mockPath: 'mock',
-        localEnabled: command === 'serve',
-        prodEnabled: command !== 'serve' && prodMock,
-        watchFiles: true,
-        injectCode: `
-          import { setupProdMockServer } from '../mockProdServer';
-          setupProdMockServer();
-        `,
-        logger: true,
-      }),
+      // viteMockServe({
+      //   mockPath: 'mock',
+      //   localEnabled: command === 'serve',
+      //   prodEnabled: command !== 'serve' && prodMock,
+      //   watchFiles: true,
+      //   injectCode: `
+      //     import { setupProdMockServer } from '../mockProdServer';
+      //     setupProdMockServer();
+      //   `,
+      //   logger: true,
+      // }),
     ]
   };
 }
