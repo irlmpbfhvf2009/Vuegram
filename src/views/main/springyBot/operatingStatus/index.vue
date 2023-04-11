@@ -11,27 +11,38 @@
       </div>
     </div>
     <div class="layout-container-table">
-      <Table
-        ref="table"
-        v-model:page="page"
-        v-loading="loading"
-        :showIndex="true"
-        :showSelection="true"
-        :data="tableData"
-        @getTableData="getTableData"
-        @selection-change="handleSelectionChange"
-      >
-        <el-table-column prop="username" label="名称" align="center" />
+      <Table ref="table" v-model:page="page" v-loading="loading" :showIndex="true" :showSelection="true" :data="tableData"
+        @getTableData="getTableData" @selection-change="handleSelectionChange">
+        <!-- <el-table-column prop="username" label="名称" align="center" /> -->
+        <el-table-column label="名称" align="center">
+          <template #default="{ row }">
+            <div>
+              <div :class="['circle', row.state ? 'green' : 'red']"></div>
+              {{ row.username }}
+            </div>
+          </template>
+        </el-table-column>
+
         <el-table-column prop="token" label="Token" align="center" />
-        <el-table-column prop="state" label="狀態" align="center" />
+        <!-- <el-table-column prop="state" label="状态" align="center" /> -->
+        <el-table-column label="状态" align="center">
+          <template #default="scope">
+            <div class="status-indicator" :class="{ 'status-on': scope.row.state, 'status-off': !scope.row.state }">
+              <span>{{ scope.row.state ? '启动中' : '已停止' }}</span>
+            </div>
+          </template>
+        </el-table-column>
         <el-table-column label="操作" align="center" fixed="right" width="275">
           <template #default="scope">
-            <el-button type="success" @click="handleStart(scope.row)">启动</el-button>
-            <el-button type="info" @click="handleStop(scope.row)">停止</el-button>
+            <!-- <el-button type="success" @click="handleStart(scope.row)">启动</el-button>
+            <el-button type="info" @click="handleStop(scope.row)">停止</el-button> -->
+            <el-button :type="scope.row.state ? 'info' : 'success'"
+              @click="scope.row.state ? handleStop(scope.row) : handleStart(scope.row)">{{ scope.row.state ? '停止' : '启动'
+              }}</el-button>
             <el-button type="primary" @click="handleEdit(scope.row)">编辑</el-button>
             <el-popconfirm title="删除" @confirm="handleDel([scope.row])">
               <template #reference>
-                <el-button type="danger" >删除</el-button>
+                <el-button type="danger">删除</el-button>
               </template>
             </el-popconfirm>
           </template>
@@ -45,7 +56,7 @@
 <script>
 import { defineComponent, ref, reactive } from 'vue'
 import Table from '@/components/table/index.vue'
-import { getAllBot ,deleteBot, start,stop} from '@/api/bot'
+import { getAllBot, deleteBot, start, stop } from '@/api/bot'
 import Layer from './layer.vue'
 import { ElMessage } from 'element-plus'
 export default defineComponent({
@@ -81,38 +92,38 @@ export default defineComponent({
         page.index = 1
       }
       let params = {
-        page: page.index -1,
+        page: page.index - 1,
         pageSize: page.size,
       }
       getAllBot(params)
-      .then(res => {
-        tableData.value = res.data.list
-        page.total = Number(res.data.pager.total)
-      })
-      .catch(error => {
-        tableData.value = []
-        page.index = 1
-        page.total = 0
-      })
-      .finally(() => {
-        loading.value = false
-      })
+        .then(res => {
+          tableData.value = res.data.list
+          page.total = Number(res.data.pager.total)
+        })
+        .catch(error => {
+          tableData.value = []
+          page.index = 1
+          page.total = 0
+        })
+        .finally(() => {
+          loading.value = false
+        })
     }
     // 删除功能
     const handleDel = (data) => {
       let params = {
-        ids: data.map((e)=> {
+        ids: data.map((e) => {
           return e.id
         }).join(',')
       }
       deleteBot(params)
-      .then(res => {
-        ElMessage({
-          type: 'success',
-          message: res.msg
+        .then(res => {
+          ElMessage({
+            type: 'success',
+            message: res.msg
+          })
+          getTableData(tableData.value.length === 1 ? true : false)
         })
-        getTableData(tableData.value.length === 1 ? true : false)
-      })
     }
     // 新增弹窗功能
     const handleAdd = () => {
@@ -127,16 +138,16 @@ export default defineComponent({
       layer.show = true
     }
     const handleStart = (row) => {
-      start(row).then(res=>{
+      start(row).then(res => {
         console.log(res)
         getTableData(true)
       })
     }
     const handleStop = (row) => {
-      stop(row).then(res=>{
+      stop(row).then(res => {
         console.log(res)
         location.reload()
-      }).catch(error =>{
+      }).catch(error => {
         console.log(error)
       })
     }
@@ -160,5 +171,32 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-  
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+}
+
+.status-on {
+  color: green;
+}
+
+.status-off {
+  color: red;
+}
+
+.circle {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
 </style>
