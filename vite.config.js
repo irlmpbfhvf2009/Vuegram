@@ -1,6 +1,6 @@
 import vue from '@vitejs/plugin-vue'
 // import { defineConfig } from 'vite'
-// import { viteMockServe } from 'vite-plugin-mock'
+import { viteMockServe } from 'vite-plugin-mock'
 import { resolve } from 'path'
 
 const pathResolve = (dir) => {
@@ -12,7 +12,7 @@ const alias = {
 }
 // export default defineConfig => {
 export default ({ command }) => {
-  // const prodMock = true;
+  const prodMock = true;
   return {
     base: './',
     resolve: {
