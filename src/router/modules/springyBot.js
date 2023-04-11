@@ -16,12 +16,12 @@ const route = [
       {
         path: 'robotGroupManagement',
         component: createNameComponent(() => import('@/views/main/springyBot/robotGroupManagement/index.vue')),
-        meta: { title: '机器人管理群组(尚未完成)', cache: true, roles: ['admin'] }
+        meta: { title: 'Bot群组管理(尚未完成)', cache: true, roles: ['admin'] }
       },
       {
         path: 'robotChannelManagement',
         component: createNameComponent(() => import('@/views/main/springyBot/robotGroupManagement/index.vue')),
-        meta: { title: '机器人管理频道(尚未完成)', cache: true, roles: ['admin'] }
+        meta: { title: 'Bot频道管理(尚未完成)', cache: true, roles: ['admin'] }
       },
       {
         path: 'jobManagement',
