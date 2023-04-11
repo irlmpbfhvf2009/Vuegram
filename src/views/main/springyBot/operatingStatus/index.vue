@@ -189,7 +189,7 @@ export default defineComponent({
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 1px;
 }
 
 .green {
