@@ -25,8 +25,8 @@ export default ({ command }) => {
       https: false,
       proxy: { // 代理配置
         '/app': {
-          // target : 'http://localhost:8888',
-          target : 'http://rcc.ddb99.vip:18889',
+          target : 'http://localhost:8888',
+          // target : 'http://rcc.ddb99.vip:18889',
           changeOrigin: true,
           ws: true,
           // rewrite: (path) => path.replace(/^\/dev-api/,'')
