@@ -21,7 +21,7 @@
 
 <script>
 import { defineComponent, ref, inject, nextTick } from "vue";
-import { getTree } from "@/api/table";
+import { getGroupAndChannelTreeData } from "@/api/groupAndChannelManagement";
 export default defineComponent({
   setup() {
     let data = ref([]);
@@ -33,8 +33,7 @@ export default defineComponent({
     const active = inject("active");
     const getTreeData = () => {
       let params = {};
-      getTree(params).then((res) => {
-        console.log(res.data)
+      getGroupAndChannelTreeData(params).then((res) => {
         data.value = res.data;
         active.value = res.data[0];
         nextTick(() => {
