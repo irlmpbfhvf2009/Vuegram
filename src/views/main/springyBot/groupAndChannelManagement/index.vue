@@ -11,14 +11,15 @@
 
 <script>
 import { defineComponent, ref, provide } from 'vue'
-import Category from './category.vue'
+import Category from './tree.vue'
 import myTable from './my-table.vue'
 export default defineComponent({
-  name: 'categoryTable',
+  name: 'treeTable',
   components: {
     Category,
     myTable,
   },
+  
   setup() {
     let active = ref({})
     provide('active', active)
@@ -30,8 +31,8 @@ export default defineComponent({
   .full {
     width: 100%;
     height: 100%;
-    padding: 15px;
     box-sizing: border-box;
+    padding: 15px;
     display: flex;
     .left {
       width: 250px;

@@ -14,25 +14,25 @@ const route = [
         meta: { title: '运作状态', cache: true, roles: ['admin'] }
       },
       {
-        path: 'robotGroupManagement',
-        component: createNameComponent(() => import('@/views/main/springyBot/robotGroupManagement/index.vue')),
-        meta: { title: '群组、频道管理(尚未开发)', cache: true, roles: ['admin'] }
+        path: 'groupAndChannelManagement',
+        component: createNameComponent(() => import('@/views/main/springyBot/groupAndChannelManagement/index.vue')),
+        meta: { title: '群组、频道管理(开发中)', cache: true, roles: ['admin'] }
       },
       {
         path: 'jobManagement',
         component: createNameComponent(() => import('@/views/main/springyBot/jobManagement/index.vue')),
         meta: { title: '招聘和求职信息管理(尚未开发)', cache: true, roles: ['admin'] }
       },
-      {
-        path: 'robotGroupManagement2',
-        component: createNameComponent(() => import('@/views/main/springyBot/robotGroupManagement/index.vue')),
-        meta: { title: '会员邀请人数统计(尚未开发)', cache: true, roles: ['admin'] }
-      },
-      {
-        path: 'robotGroupManagement3',
-        component: createNameComponent(() => import('@/views/main/springyBot/robotGroupManagement/index.vue')),
-        meta: { title: '会员奖金分析(尚未开发)', cache: true, roles: ['admin'] }
-      },
+      // {
+      //   path: 'robotGroupManagement2',
+      //   component: createNameComponent(() => import('@/views/main/springyBot/robotGroupManagement/index.vue')),
+      //   meta: { title: '会员邀请人数统计(尚未开发)', cache: true, roles: ['admin'] }
+      // },
+      // {
+      //   path: 'robotGroupManagement3',
+      //   component: createNameComponent(() => import('@/views/main/springyBot/robotGroupManagement/index.vue')),
+      //   meta: { title: '会员奖金分析(尚未开发)', cache: true, roles: ['admin'] }
+      // },
     ]
   }
 ]

@@ -168,8 +168,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
   .layout-container {
-    width: calc(100% - 10px);
     height: 100%;
     margin: 0 0 0 10px;
+    width: calc(100% - 10px);
   }
 </style>

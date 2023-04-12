@@ -44,6 +44,7 @@ export default defineComponent({
   },
   setup(props, ctx) {
     const ruleForm = ref(null)
+    const layerDom = ref(null)
     let form = ref({
       name: ''
     })
