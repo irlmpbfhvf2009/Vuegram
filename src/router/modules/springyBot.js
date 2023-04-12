@@ -16,7 +16,7 @@ const route = [
       {
         path: 'groupAndChannelManagement',
         component: createNameComponent(() => import('@/views/main/springyBot/groupAndChannelManagement/index.vue')),
-        meta: { title: '群组、频道管理(开发中)', cache: true, roles: ['admin'] }
+        meta: { title: '已加入群组、频道(开发中)', cache: true, roles: ['admin'] }
       },
       {
         path: 'jobManagement',
