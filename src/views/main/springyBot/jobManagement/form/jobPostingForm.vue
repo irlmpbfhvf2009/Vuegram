@@ -25,7 +25,7 @@
             <el-input v-model="form.flightNumber" placeholder="请输入咨询飞机号"></el-input>
         </el-form-item>
         <div>
-            <el-button type="primary" @click="submit">確認</el-button>
+            <el-button type="primary" @click="submit">发送</el-button>
         </div>
     </el-form>
 </template>

@@ -39,6 +39,7 @@ service.interceptors.response.use(
     const badMessage = error.msg || error.message || error
     const code = parseInt(badMessage.toString().replace('Error: Request failed with status code ', ''))
     showError({ code, message: badMessage })
+    store.dispatch('user/loginOut')
     return Promise.reject(error)
   }
 )
@@ -46,11 +47,6 @@ service.interceptors.response.use(
 function showError(error) {
   if (error.code === 403) {
     // to re-login
-    ElMessage({
-      message: '測試',
-      type: 'error',
-      duration: 3 * 1000
-    })
     store.dispatch('user/loginOut')
   } else {
     ElMessage({
