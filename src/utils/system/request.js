@@ -39,7 +39,7 @@ service.interceptors.response.use(
     const badMessage = error.msg || error.message || error
     const code = parseInt(badMessage.toString().replace('Error: Request failed with status code ', ''))
     showError({ code, message: badMessage })
-    store.dispatch('user/loginOut')
+    // store.dispatch('user/loginOut')
     return Promise.reject(error)
   }
 )
