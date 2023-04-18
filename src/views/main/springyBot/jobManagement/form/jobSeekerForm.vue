@@ -44,6 +44,9 @@
         <el-form-item label="自我介绍：" prop="selfIntroduction">
             <el-input v-model="form.selfIntroduction" placeholder="请输入自我介绍，限50字以内"></el-input>
         </el-form-item>
+        <el-form-item label="咨询飞机号：" prop="flightNumber">
+            <el-input v-model="form.flightNumber" placeholder="请输入自我介绍，限50字以内"></el-input>
+        </el-form-item>
         <div>
             <el-button type="primary" @click="submit">確認</el-button>
         </div>
@@ -73,6 +76,7 @@ export default defineComponent({
             expectedSalary:'',
             workExperience:'',
             selfIntroduction:'',
+            flightNumber:'',
         })
         onMounted(() => {
             decryptedUbWithJobSeeker({ ub: decodeURIComponent(route.query.ub) })
@@ -91,6 +95,7 @@ export default defineComponent({
                     form.value.expectedSalary = res.data.expectedSalary
                     form.value.workExperience = res.data.workExperience
                     form.value.selfIntroduction = res.data.selfIntroduction
+                    form.value.flightNumber = res.data.flightNumber
                 })
         })
         return {
