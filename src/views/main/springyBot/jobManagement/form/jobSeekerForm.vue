@@ -58,7 +58,7 @@
 import { defineComponent, ref, onMounted } from 'vue'
 import { useRoute } from "vue-router";
 import { radioData, nativePlace,educationOptions } from './enum'
-import { addJobSeeker, decryptedUbWithJobSeeker } from '@/api/job'
+import { editAndPost_JobSeeker, decryptedUbWithJobSeeker } from '@/api/job'
 export default defineComponent({
 
     setup() {
@@ -111,7 +111,7 @@ export default defineComponent({
             this.addForm(params)
         },
         addForm(params) {
-            addJobSeeker(params)
+            editAndPost_JobSeeker(params)
                 .then(res => {
                     this.$message({
                         type: 'success',

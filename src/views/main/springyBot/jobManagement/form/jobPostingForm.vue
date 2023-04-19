@@ -34,7 +34,7 @@
 <script>
 import { defineComponent, ref,onMounted   } from 'vue'
 import { useRoute } from "vue-router";
-import { addJobPosting,decryptedUbWithJobPosting } from '@/api/job'
+import { editAndPost_JobPosting,decryptedUbWithJobPosting } from '@/api/job'
 export default defineComponent({
 
     setup() {
@@ -79,7 +79,7 @@ export default defineComponent({
 
         },
         addForm(params){
-            addJobPosting(params)
+            editAndPost_JobPosting(params)
             .then(res => {
                 this.$message({
                     type:'success',

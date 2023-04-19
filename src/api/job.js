@@ -1,8 +1,8 @@
 import request from '@/utils/system/request'
 
-export function addJobPosting(data) {
+export function editAndPost_JobPosting(data) {
   return request({
-    url: '/jobManagement/addJobPosting',
+    url: '/jobManagement/editAndPost_JobPosting',
     method: 'post',
     data,
   })
@@ -15,9 +15,9 @@ export function decryptedUbWithJobPosting(data) {
   })
 }
 
-export function addJobSeeker(data) {
+export function editAndPost_JobSeeker(data) {
   return request({
-    url: '/jobManagement/addJobSeeker',
+    url: '/jobManagement/editAndPost_JobSeeker',
     method: 'post',
     data,
   })
