@@ -46,6 +46,20 @@ const route = [
     props: { query: true },
   },
   {
+    path: '/edit_jobSeekerForm',
+    component: createNameComponent(() => import('@/views/main/springyBot/jobManagement/form/edit_jobSeekerForm.vue')),
+    hideMenu: true,
+    meta: { title: '求职表单', hideTabs: true },
+    props: { query: true },
+  },
+  {
+    path: '/edit_jobPostingForm',
+    component: createNameComponent(() => import('@/views/main/springyBot/jobManagement/form/edit_jobPostingForm.vue')),
+    hideMenu: true,
+    meta: { title: '招聘表单', hideTabs: true },
+    props: { query: true },
+  },
+  {
     // 找不到路由重定向到404页面
     path: "/:pathMatch(.*)",
     component: Layout,

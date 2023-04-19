@@ -29,7 +29,20 @@ export function decryptedUbWithJobSeeker(data) {
     data,
   })
 }
-
+export function edit_JobPosting(data) {
+  return request({
+    url: '/jobManagement/edit_JobPosting',
+    method: 'post',
+    data,
+  })
+}
+export function edit_JobSeeker(data) {
+  return request({
+    url: '/jobManagement/edit_JobSeeker',
+    method: 'post',
+    data,
+  })
+}
 
 // 获取树组织数据
 export function getJobTreeData(data) {
