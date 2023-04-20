@@ -81,6 +81,7 @@ export default defineComponent({
         onMounted(() => {
             decryptedUbWithJobSeeker({ ub: decodeURIComponent(route.query.ub) })
                 .then(res => {
+                    console.log(res.data)
                     form.value.userId = res.data.userId
                     form.value.botId = res.data.botId
                     form.value.name = res.data.name

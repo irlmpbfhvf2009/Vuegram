@@ -13,7 +13,7 @@
             <el-input v-model="form.commission" placeholder="请输入提成"></el-input>
         </el-form-item>
         <el-form-item label="上班时间：" prop="workTime">
-            <el-input  v-model="form.workTime" placeholder="请输入上班时间"></el-input>
+            <el-input v-model="form.workTime" placeholder="请输入上班时间"></el-input>
         </el-form-item>
         <el-form-item label="要求内容：" prop="requirements">
             <el-input type="textarea" v-model="form.requirements" maxlength="50" placeholder="限50字以内"></el-input>
@@ -32,16 +32,16 @@
 
 
 <script>
-import { defineComponent, ref,onMounted   } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
 import { useRoute } from "vue-router";
-import { editAndPost_JobPosting,decryptedUbWithJobPosting } from '@/api/job'
+import { editAndPost_JobPosting, decryptedUbWithJobPosting } from '@/api/job'
 export default defineComponent({
 
     setup() {
         const route = useRoute()
         let form = ref({
-            userId : '',
-            botId : '',
+            userId: '',
+            botId: '',
             company: '',
             position: '',
             baseSalary: '',
@@ -53,8 +53,9 @@ export default defineComponent({
         })
 
         onMounted(() => {
-            decryptedUbWithJobPosting({ub:decodeURIComponent(route.query.ub)})
+            decryptedUbWithJobPosting({ ub: decodeURIComponent(route.query.ub) })
                 .then(res => {
+                    console.log(res.data)
                     form.value.userId = res.data.userId
                     form.value.botId = res.data.botId
                     form.value.company = res.data.company
@@ -78,14 +79,14 @@ export default defineComponent({
             this.addForm(params)
 
         },
-        addForm(params){
+        addForm(params) {
             editAndPost_JobPosting(params)
-            .then(res => {
-                this.$message({
-                    type:'success',
-                    message:res.msg
+                .then(res => {
+                    this.$message({
+                        type: 'success',
+                        message: res.msg
+                    })
                 })
-            })
         },
     },
 })
