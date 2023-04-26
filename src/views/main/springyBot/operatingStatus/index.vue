@@ -127,13 +127,13 @@ export default defineComponent({
     }
     // 新增弹窗功能
     const handleAdd = () => {
-      layer.title = '新增数据'
+      layer.title = '新增电报机器人'
       layer.show = true
       delete layer.row
     }
     // 编辑弹窗功能
     const handleEdit = (row) => {
-      layer.title = '编辑数据'
+      layer.title = '编辑电报机器人'
       layer.row = row
       layer.show = true
     }

@@ -9,3 +9,7 @@ export const radioData = [
   { value: true, label: '开启' },
   { value: false, label: '关闭' },
 ]
+
+export const botType = [
+    { value: 'talentBot', label: '人才机器人' },
+]

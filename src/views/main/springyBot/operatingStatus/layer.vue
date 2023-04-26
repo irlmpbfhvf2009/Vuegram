@@ -7,7 +7,12 @@
       <el-form-item label="Token：" prop="token">
         <el-input v-model="form.token"  placeholder="请输入Token"></el-input>
       </el-form-item>
-      <el-form-item label="邀请好友发言限制：" prop="inviteFriendsSet">
+      <el-form-item label="机器人类型：" prop="botType">
+        <el-radio-group v-model="form.botType">
+          <el-radio v-for="item in botType" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
+        </el-radio-group>
+      </el-form-item>
+      <!-- <el-form-item label="邀请好友发言限制：" prop="inviteFriendsSet">
         <el-radio-group v-model="form.config.inviteFriendsSet">
           <el-radio v-for="item in radioData" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
         </el-radio-group>
@@ -39,7 +44,7 @@
           <el-form-item label="联系人：" prop="contactPerson">
             <el-input v-model="form.config.contactPerson" ></el-input>
           </el-form-item>
-        </el-form-item>
+        </el-form-item> -->
     </el-form>
   </Layer>
 </template>
@@ -47,7 +52,7 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import { addBot ,updateBot} from '@/api/bot'
-import { selectData, radioData } from '../operatingStatus/enum'
+import { selectData, radioData,botType } from '../operatingStatus/enum'
 import Layer from '@/components/layer/index.vue'
 export default defineComponent({
   components: {
@@ -72,17 +77,18 @@ export default defineComponent({
       token: '',
       username:'',
       state:false,
-      config:{
-        inviteFriendsSet:false,
-        followChannelSet:false,
-        invitationBonusSet:false,
-        deleteSeconds:6,
-        inviteFriendsAutoClearTime:3,
-        inviteFriendsQuantity:2,
-        inviteMembers:6,
-        inviteEarnedOutstand:1.2,
-        contactPerson:'@aa',
-      },
+      botType:'talentBot',
+      // config:{
+      //   inviteFriendsSet:false,
+      //   followChannelSet:false,
+      //   invitationBonusSet:false,
+      //   deleteSeconds:6,
+      //   inviteFriendsAutoClearTime:3,
+      //   inviteFriendsQuantity:2,
+      //   inviteMembers:6,
+      //   inviteEarnedOutstand:1.2,
+      //   contactPerson:'@aa',
+      // },
     })
     init()
     function init() { // 用于判断新增还是编辑功能
@@ -97,7 +103,8 @@ export default defineComponent({
       layerDom,
       ruleForm,
       selectData,
-      radioData
+      radioData,
+      botType,
     }
   },
   methods: {
