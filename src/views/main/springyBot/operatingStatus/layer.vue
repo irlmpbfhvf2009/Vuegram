@@ -69,8 +69,8 @@ export default defineComponent({
     const ruleForm= ref(null)
     const layerDom = ref(null)
     let form = ref({
-      token: '5855785269:AAH9bvPpYudd2wSAvMnBTiKakCeoB92_Z_8',
-      username:'CCP_1121_BOT',
+      token: '',
+      username:'',
       state:false,
       config:{
         inviteFriendsSet:false,
