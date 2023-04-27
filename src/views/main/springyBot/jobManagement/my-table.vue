@@ -19,17 +19,19 @@
         ref="table"
         v-model:page="page"
         v-loading="loading"
-        :showIndex="true"
-        :showSelection="true"
         :data="tableData"
         @getTableData="getTableData"
         @selection-change="handleSelectionChange"
       >
-        <el-table-column prop="name" label="名称" align="center" />
-        <el-table-column prop="number" label="数字" align="center" />
-        <el-table-column prop="chooseName" label="选择器" align="center" />
-        <el-table-column prop="radioName" label="单选框" align="center" />
-        <el-table-column label="操作" align="center" fixed="right" width="200">
+        <el-table-column prop="company" label="公司" align="center" />
+        <el-table-column prop="position" label="职位" align="center" />
+        <el-table-column prop="baseSalary" label="底薪" align="center" />
+        <el-table-column prop="commission" label="提成" align="center" />
+        <el-table-column prop="workTime" label="上班时间" align="center" />
+        <el-table-column prop="requirements" label="要求内容" align="center" />
+        <el-table-column prop="location" label="🐌地址" align="center" />
+        <el-table-column prop="flightNumber" label="✈️咨询飞机号" align="center" />
+        <!-- <el-table-column label="操作" align="center" fixed="right" width="200">
           <template #default="scope">
             <el-button @click="handleEdit(scope.row)">编辑</el-button>
             <el-popconfirm title="删除" @confirm="handleDel([scope.row])">
@@ -38,7 +40,7 @@
               </template>
             </el-popconfirm>
           </template>
-        </el-table-column>
+        </el-table-column> -->
       </Table>
       <Layer :layer="layer" @getTableData="getTableData" v-if="layer.show" />
     </div>
@@ -83,8 +85,15 @@ export default defineComponent({
     }
     // 获取表格数据
     // params <init> Boolean ，默认为false，用于判断是否需要初始化分页
-    const getTableData = (init) => {
-      loading.value = true
+    const getTableData = (init, val) => {
+      if(val.jobPostingDTO){
+        console.log(val.jobPostingDTO)
+        let data = val.jobPostingDTO
+        tableData.value = data
+      }
+
+
+       loading.value = false
       if (init) {
         page.index = 1
       }
@@ -94,28 +103,28 @@ export default defineComponent({
         pageSize: page.size,
         ...query
       }
-      getData(params)
-      .then(res => {
-        let data = res.data.list
-        if (Array.isArray(data)) {
-          data.forEach(d => {
-            const select = selectData.find(select => select.value === d.choose)
-            select ? d.chooseName = select.label : d.chooseName = d.choose
-            const radio = radioData.find(select => select.value === d.radio)
-            radio ? d.radioName = radio.label : d.radio
-          })
-        }
-        tableData.value = res.data.list
-        page.total = Number(res.data.pager.total)
-      })
-      .catch(error => {
-        tableData.value = []
-        page.index = 1
-        page.total = 0
-      })
-      .finally(() => {
-        loading.value = false
-      })
+      // getData(params)
+      // .then(res => {
+      //   let data = res.data.list
+      //   if (Array.isArray(data)) {
+      //     data.forEach(d => {
+      //       const select = selectData.find(select => select.value === d.choose)
+      //       select ? d.chooseName = select.label : d.chooseName = d.choose
+      //       const radio = radioData.find(select => select.value === d.radio)
+      //       radio ? d.radioName = radio.label : d.radio
+      //     })
+      //   }
+      //   tableData.value = res.data.list
+      //   page.total = Number(res.data.pager.total)
+      // })
+      // .catch(error => {
+      //   tableData.value = []
+      //   page.index = 1
+      //   page.total = 0
+      // })
+      // .finally(() => {
+      //   loading.value = false
+      // })
     }
     // 删除功能
     const handleDel = (data) => {
@@ -146,7 +155,7 @@ export default defineComponent({
       layer.show = true
     }
     watch(activeCategory, (newVal) => {
-      getTableData(true)
+      getTableData(true, newVal)
     })
     // getTableData(true)
     return {

@@ -37,7 +37,7 @@ export default defineComponent({
 
 
       getJobTreeData(params).then((res) => {
-        console.log(res.data[0])
+        // console.log(res.data[0])
         data.value = res.data;
         active.value = res.data[0];
         nextTick(() => {
@@ -60,7 +60,7 @@ export default defineComponent({
 
 
     const handleNodeClick = (row) => {
-      console.log(row)
+      // console.log(row)
       active.value = row;
     };
     getTreeData();

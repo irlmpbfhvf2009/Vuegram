@@ -28,11 +28,11 @@ export default defineComponent({
     }
     // 获取表格数据
     const getTableData = (init, val) => {
-      if (val.robotGroupManagementDTO != null) {
+      if (val.robotGroupManagementDTO) {
         let data = val.robotGroupManagementDTO
         tableData.value = data
       }
-      if (val.robotChannelManagementDTO != null) {
+      if (val.robotChannelManagementDTO) {
         let data = val.robotChannelManagementDTO
         tableData.value = data
       }
