@@ -21,7 +21,7 @@ const route = [
       {
         path: 'jobManagement',
         component: createNameComponent(() => import('@/views/main/springyBot/jobManagement/index.vue')),
-        meta: { title: '招聘和求职信息管理(尚未开发)', cache: true, roles: ['admin'] }
+        meta: { title: '招聘和求职信息管理', cache: true, roles: ['admin'] }
       },
       // {
       //   path: 'robotGroupManagement2',
