@@ -21,7 +21,7 @@
 
 <script>
 import { defineComponent, ref, inject, nextTick } from "vue";
-import { getTree } from "@/api/table";
+// import { getTree } from "@/api/table";
 import { getJobTreeData } from "@/api/job";
 export default defineComponent({
   setup() {
@@ -39,7 +39,6 @@ export default defineComponent({
       getJobTreeData(params).then((res) => {
         console.log(res.data[0])
         data.value = res.data;
-        // console.log(data2.value)
         active.value = res.data[0];
         nextTick(() => {
           tree.value && tree.value.setCurrentKey(active.value.id)

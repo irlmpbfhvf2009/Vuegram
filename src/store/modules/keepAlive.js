@@ -16,7 +16,7 @@ const mutations = {
     const key = state.keepAliveComponentsName.indexOf(name)
     if (key !== -1) {
       state.keepAliveComponentsName.splice(key, 1)
-      console.log(state.keepAliveComponentsName)
+      // console.log(state.keepAliveComponentsName)
     }
   }
 }

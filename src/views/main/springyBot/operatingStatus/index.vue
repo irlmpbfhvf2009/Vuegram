@@ -139,13 +139,13 @@ export default defineComponent({
     }
     const handleStart = (row) => {
       start(row).then(res => {
-        console.log(res)
+        // console.log(res)
         getTableData(true)
       })
     }
     const handleStop = (row) => {
       stop(row).then(res => {
-        console.log(res)
+        // console.log(res)
         location.reload()
       }).catch(error => {
         console.log(error)

@@ -89,7 +89,7 @@ function eachData(data, type) {
       d.component = createNameComponent(() => import('@/views/main/pages/crudTable/index.vue'))
     }
   })
-  console.log(data)
+  // console.log(data)
 }
 
 if (store.state.user.token) {

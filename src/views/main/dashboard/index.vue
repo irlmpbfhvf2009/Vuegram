@@ -24,13 +24,13 @@ export default defineComponent({
   methods:{
       startBtn(){
         start().then(res=>{
-          console.log(res)
+          // console.log(res)
         })
       },
       stopBtn(){
-        console.log(this.params)
+        // console.log(this.params)
         stop().then(res=>{
-          console.log(res)
+          // console.log(res)
         })
       }
     },
