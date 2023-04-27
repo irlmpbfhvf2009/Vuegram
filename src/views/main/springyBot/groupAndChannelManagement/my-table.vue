@@ -16,11 +16,9 @@ import Table from '@/components/table/index.vue'
 export default defineComponent({
   components: {
     Table,
-    // Layer
   },
   setup() {
     const activeCategory = inject('active')
-    const loading = ref(true)
     const tableData = ref([])
     const chooseData = ref([])
     const handleSelectionChange = (val) => {
@@ -40,12 +38,9 @@ export default defineComponent({
     watch(activeCategory, (newVal) => {
       getTableData(true, newVal)
     })
-    // getTableData(true)
     return {
-      // query,
       tableData,
       chooseData,
-      loading,
       handleSelectionChange,
       getTableData
     }

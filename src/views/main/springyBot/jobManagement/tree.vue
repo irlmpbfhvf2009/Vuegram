@@ -37,30 +37,18 @@ export default defineComponent({
 
 
       getJobTreeData(params).then((res) => {
-        // console.log(res.data[0])
         data.value = res.data;
         active.value = res.data[0];
         nextTick(() => {
           tree.value && tree.value.setCurrentKey(active.value.id)
+          console.log(tree.value)
         })
       });
-
-      
-      // getTree(params).then((res) => {
-      //   // console.log(res.data)
-      //   data.value = res.data;
-      //   console.log(data.value)
-      //   active.value = res.data[0];
-      //   nextTick(() => {
-      //     tree.value && tree.value.setCurrentKey(active.value.id)
-      //   })
-      // });
 
     };
 
 
     const handleNodeClick = (row) => {
-      // console.log(row)
       active.value = row;
     };
     getTreeData();
