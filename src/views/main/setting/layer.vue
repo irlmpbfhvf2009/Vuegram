@@ -26,6 +26,7 @@
 import { defineComponent, ref } from 'vue'
 import { updateAdmin, addAdmin } from '@/api/app'
 import { radioData, roles } from './enum'
+import { useStore } from 'vuex'
 import Layer from '@/components/layer/index.vue'
 export default defineComponent({
   components: {
@@ -44,6 +45,7 @@ export default defineComponent({
     }
   },
   setup(props, ctx) {
+    const store = useStore()
     const ruleForm = ref(null)
     const layerDom = ref(null)
     let form = ref({
@@ -71,9 +73,11 @@ export default defineComponent({
       ruleForm,
       radioData,
       roles,
+      store,
     }
   },
   methods: {
+    
     submit() {
       if (this.ruleForm) {
         this.ruleForm.validate((valid) => {
@@ -118,6 +122,12 @@ export default defineComponent({
             type: 'success',
             message: res.msg
           })
+          if(this.form.username == this.store.state.user.info.username){
+            let params = ref({
+              token:this.store.state.user.token,
+            })
+            this.store.dispatch('user/getInfo',params.value)
+          }
           this.$emit('getTableData', false)
           this.layerDom && this.layerDom.close()
         })

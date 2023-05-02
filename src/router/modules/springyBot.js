@@ -11,12 +11,12 @@ const route = [
       {
         path: 'springyBot',
         component: createNameComponent(() => import('@/views/main/springyBot/operatingStatus/index.vue')),
-        meta: { title: '运作状态', cache: true, roles: ['admin'] }
+        meta: { title: '运作状态', cache: true, roles: ['ADMIN'] }
       },
       {
         path: 'groupAndChannelManagement',
         component: createNameComponent(() => import('@/views/main/springyBot/groupAndChannelManagement/index.vue')),
-        meta: { title: '机器人所在群组、频道', cache: true, roles: ['admin'] }
+        meta: { title: '机器人所在群组、频道', cache: true, roles: ['ADMIN'] }
       },
       {
         path: 'jobManagement',

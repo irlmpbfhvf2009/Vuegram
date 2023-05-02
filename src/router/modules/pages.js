@@ -5,18 +5,18 @@ const route = [
     path: '/pages',
     component: Layout,
     redirect: '/pages/crudTable',
-    meta: { title: '页面', icon: 'el-icon-document-copy' },
+    meta: { title: '页面', icon: 'el-icon-document-copy', roles: ['TEST']  },
     alwayShow: true,
     children: [
       {
         path: 'crudTable',
         component: createNameComponent(() => import('@/views/main/pages/crudTable/index.vue')),
-        meta: { title: '业务表格', cache: false, roles: ['ADMIN', 'TEST'] }
+        meta: { title: '业务表格', cache: false}
       },
       {
         path: 'categoryTable',
         component: createNameComponent(() => import('@/views/main/pages/categoryTable/index.vue')),
-        meta: { title: '分类联动表格', cache: true, roles: ['TEST'] }
+        meta: { title: '分类联动表格', cache: true}
       },
       {
         path: 'treeTable',

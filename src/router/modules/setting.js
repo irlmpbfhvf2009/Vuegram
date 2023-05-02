@@ -11,7 +11,7 @@ const route = [
       {
         path: 'chart',
         component: createNameComponent(() => import('@/views/main/setting/index.vue')),
-        meta: { title: '用戶管理', cache: true, roles: ['admin'] }
+        meta: { title: '用戶管理', cache: true, roles: ['ADMIN'] }
       }
     ]
   }

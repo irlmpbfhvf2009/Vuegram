@@ -1,5 +1,6 @@
 <template>
-  <template v-if="!menu.hideMenu">
+  <!-- <template v-if="!menu.hideMenu"> -->
+    <template v-if="!menu.hideMenu && checkUserRole(menu)">
     <el-submenu v-if="showMenuType === 2" :index="pathResolve">
       <template #title>
         <i :class="menu.meta.icon" v-if="menu.meta.icon"></i>
@@ -14,7 +15,8 @@
       </el-menu-item>
       <el-submenu v-else :index="pathResolve">
         <template #title>
-          <i :class="menu.children[0].meta.icon || menu.meta.icon" v-if="menu.children[0].meta.icon || menu.meta.icon"></i>
+          <i :class="menu.children[0].meta.icon || menu.meta.icon"
+            v-if="menu.children[0].meta.icon || menu.meta.icon"></i>
           <span>{{ menu.children[0].meta.title }}</span>
         </template>
         <menu-item v-for="(item, key) in menu.children[0].children" :key="key" :menu="item" :basePath="pathResolve" />
@@ -22,8 +24,8 @@
     </app-link>
     <app-link v-else :to="pathResolve">
       <el-menu-item :index="pathResolve">
-      <i :class="menu.meta.icon" v-if="menu.meta.icon"></i>
-      <template #title>{{ menu.meta.title }}</template>
+        <i :class="menu.meta.icon" v-if="menu.meta.icon"></i>
+        <template #title>{{ menu.meta.title }}</template>
       </el-menu-item>
     </app-link>
   </template>
@@ -32,6 +34,7 @@
 <script>
 import { defineComponent, computed } from 'vue'
 import appLink from './Link.vue'
+import { useStore } from "vuex";
 export default defineComponent({
   name: 'menu-item',
   props: {
@@ -49,6 +52,17 @@ export default defineComponent({
   },
   setup(props) {
     const menu = props.menu
+
+    const store = useStore()
+    const userRoles = computed(() => Array.from(store.state.user.info.roles))
+
+    function checkUserRole(menu) {
+      if(menu.meta.roles){
+        return menu.meta.roles.some(role => userRoles.value.includes(role))
+      }
+      return true
+    }
+
     // todo: 优化if结构
     const showMenuType = computed(() => { // 0: 无子菜单， 1：有1个子菜单， 2：显示上下级子菜单
       if (menu.children && (menu.children.length > 1 || (menu.children.length === 1 && menu.alwayShow))) {
@@ -80,17 +94,19 @@ export default defineComponent({
     })
     return {
       showMenuType,
-      pathResolve
+      pathResolve,
+      checkUserRole,
     }
   }
 })
 </script>
 
 <style lang="scss" scoped>
-  .el-submenu {
-    text-align: left;
-  }
-  .el-menu-item {
-    text-align: left;
-  }
+.el-submenu {
+  text-align: left;
+}
+
+.el-menu-item {
+  text-align: left;
+}
 </style>
