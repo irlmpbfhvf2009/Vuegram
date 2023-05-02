@@ -6,7 +6,8 @@ export const radioData = [
 ]
 
 export const roles = [
-  { value: 1, label: '系统管理' },
-  { value: 2, label: '财务管理' },
-  { value: 3, label: '运营管理' },
+  { value: 'ADMIN', label: '系统管理' },
+  { value: 'FINANCE', label: '财务管理' },
+  { value: 'OPERATE', label: '运营管理' },
+  { value: 'TEST', label: '权限测试' },
 ]

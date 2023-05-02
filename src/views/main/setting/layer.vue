@@ -13,17 +13,19 @@
           <el-radio v-for="item in radioData" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item label="选择器：" prop="select">
-			  <el-checkbox label="a"></el-checkbox>
-			</el-form-item>
+      <el-form-item label="分配角色：" prop="roles">
+        <el-checkbox-group v-model="form.roles">
+          <el-checkbox v-for="item in roles" :key="item.value" :label="item.value">{{ item.label }}</el-checkbox>
+        </el-checkbox-group>
+      </el-form-item>
     </el-form>
   </Layer>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue'
-import { updateAdmin,addAdmin } from '@/api/app'
-import { radioData,roles } from './enum'
+import { updateAdmin, addAdmin } from '@/api/app'
+import { radioData, roles } from './enum'
 import Layer from '@/components/layer/index.vue'
 export default defineComponent({
   components: {
@@ -42,11 +44,12 @@ export default defineComponent({
     }
   },
   setup(props, ctx) {
-    const ruleForm= ref(null)
+    const ruleForm = ref(null)
     const layerDom = ref(null)
     let form = ref({
       username: '',
       enabled: true,
+      roles:['ADMIN'],
     })
     const rules = {
       username: [{ required: true, message: '請輸入用戶名', trigger: 'blur' }],
@@ -76,10 +79,18 @@ export default defineComponent({
         this.ruleForm.validate((valid) => {
           if (valid) {
             let params = this.form
-            if (this.layer.row) {
-              this.updateForm(params)
-            } else {
-              this.addForm(params)
+            if(this.form.roles && this.form.roles.length > 0){
+              if (this.layer.row) {
+                this.updateForm(params)
+              } else {
+                this.addForm(params)
+              }
+            }else{
+              this.$message({
+                type: 'error',
+                message: 'Roles is empty!'
+              })
+              return false;
             }
           } else {
             return false;
@@ -90,31 +101,29 @@ export default defineComponent({
     // 新增提交事件
     addForm(params) {
       addAdmin(params)
-      .then(res => {
-        this.$message({
-          type: res.code==200?'success':'error',
-          message: res.msg
+        .then(res => {
+          this.$message({
+            type: res.code == 200 ? 'success' : 'error',
+            message: res.msg
+          })
+          this.$emit('getTableData', true)
+          this.layerDom && this.layerDom.close()
         })
-        this.$emit('getTableData', true)
-        this.layerDom && this.layerDom.close()
-      })
     },
     // 编辑提交事件
     updateForm(params) {
       updateAdmin(params)
-      .then(res => {
-        this.$message({
-          type: 'success',
-          message: res.msg
+        .then(res => {
+          this.$message({
+            type: 'success',
+            message: res.msg
+          })
+          this.$emit('getTableData', false)
+          this.layerDom && this.layerDom.close()
         })
-        this.$emit('getTableData', false)
-        this.layerDom && this.layerDom.close()
-      })
     }
   }
 })
 </script>
 
-<style lang="scss" scoped>
-  
-</style>
+<style lang="scss" scoped></style>

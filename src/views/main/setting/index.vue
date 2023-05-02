@@ -26,10 +26,17 @@
         @selection-change="handleSelectionChange"
       >
         <el-table-column prop="username" label="用戶名" align="center" />
-        <el-table-column prop="roles" label="角色" align="center" />
-        <el-table-column prop="enabled" label="狀態" align="center" />
+        <!-- <el-table-column prop="roles" label="角色" align="center" /> -->
+        <el-table-column label="状态" align="center">
+          <template #default="scope">
+            <div :class="{ 'status-on': scope.row.enabled, 'status-off': !scope.row.enabled }">
+              <span>{{ scope.row.enabled ? '启动' : '停用' }}</span>
+            </div>
+          </template>
+        </el-table-column>
+
         <el-table-column prop="createTime" label="創建時間" align="center" />
-        <el-table-column prop="regIp" label="註冊IP" align="center" />
+        <!-- <el-table-column prop="regIp" label="註冊IP" align="center" /> -->
         <el-table-column prop="lastLoginIP" label="最後登入IP" align="center" />
         <el-table-column label="操作" align="center" fixed="right" width="200">
           <template #default="scope">
@@ -156,5 +163,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-  
+  .status-on {
+  color: green;
+}
+
+.status-off {
+  color: red;
+}
 </style>

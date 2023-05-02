@@ -11,12 +11,12 @@ const route = [
       {
         path: 'crudTable',
         component: createNameComponent(() => import('@/views/main/pages/crudTable/index.vue')),
-        meta: { title: '业务表格', cache: false, roles: ['admin', 'editor'] }
+        meta: { title: '业务表格', cache: false, roles: ['ADMIN', 'TEST'] }
       },
       {
         path: 'categoryTable',
         component: createNameComponent(() => import('@/views/main/pages/categoryTable/index.vue')),
-        meta: { title: '分类联动表格', cache: true, roles: ['admin'] }
+        meta: { title: '分类联动表格', cache: true, roles: ['TEST'] }
       },
       {
         path: 'treeTable',
