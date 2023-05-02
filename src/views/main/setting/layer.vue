@@ -13,6 +13,9 @@
           <el-radio v-for="item in radioData" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
         </el-radio-group>
       </el-form-item>
+      <el-form-item label="选择器：" prop="select">
+			  <el-checkbox label="a"></el-checkbox>
+			</el-form-item>
     </el-form>
   </Layer>
 </template>
@@ -20,7 +23,7 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import { updateAdmin,addAdmin } from '@/api/app'
-import { radioData } from './enum'
+import { radioData,roles } from './enum'
 import Layer from '@/components/layer/index.vue'
 export default defineComponent({
   components: {
@@ -63,7 +66,8 @@ export default defineComponent({
       rules,
       layerDom,
       ruleForm,
-      radioData
+      radioData,
+      roles,
     }
   },
   methods: {
