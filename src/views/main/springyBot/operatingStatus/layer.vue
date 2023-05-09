@@ -5,54 +5,22 @@
         <el-input v-model="form.username" placeholder="请输入名称"></el-input>
       </el-form-item>
       <el-form-item label="Token：" prop="token">
-        <el-input v-model="form.token"  placeholder="请输入Token"></el-input>
+        <el-input v-model="form.token" placeholder="请输入Token"></el-input>
       </el-form-item>
       <el-form-item label="机器人类型：" prop="botType">
         <el-radio-group v-model="form.botType">
           <el-radio v-for="item in botType" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
         </el-radio-group>
       </el-form-item>
-      <!-- <el-form-item label="邀请好友发言限制：" prop="inviteFriendsSet">
-        <el-radio-group v-model="form.config.inviteFriendsSet">
-          <el-radio v-for="item in radioData" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
-        </el-radio-group>
-        <el-form-item label="指定人数" prop="inviteFriendsQuantity">
-          <el-input v-model="form.config.inviteFriendsQuantity" ></el-input>
-        </el-form-item>
-        <el-form-item label="重置天数" prop="inviteFriendsAutoClearTime">
-          <el-input v-model="form.config.inviteFriendsAutoClearTime" ></el-input>
-        </el-form-item>
-      </el-form-item>
-      <el-form-item label="关注频道发言限制：" prop="followChannelSet">
-        <el-radio-group v-model="form.config.followChannelSet">
-          <el-radio v-for="item in radioData" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="系统消息删除：" prop="deleteSeconds">
-        <el-input v-model="form.config.deleteSeconds"  placeholder="请输入秒数"></el-input>
-      </el-form-item>
-        <el-form-item label="邀请奖金功能：" prop="invitationBonusSet">
-          <el-radio-group v-model="form.config.invitationBonusSet">
-            <el-radio v-for="item in radioData" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
-          </el-radio-group>
-          <el-form-item label="指定人数：" prop="inviteMembers">
-            <el-input v-model="form.config.inviteMembers" ></el-input>
-          </el-form-item>
-          <el-form-item label="每次获得奖金：" prop="inviteEarnedOutstand">
-            <el-input v-model="form.config.inviteEarnedOutstand" ></el-input>
-          </el-form-item>
-          <el-form-item label="联系人：" prop="contactPerson">
-            <el-input v-model="form.config.contactPerson" ></el-input>
-          </el-form-item>
-        </el-form-item> -->
     </el-form>
   </Layer>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue'
-import { addBot ,updateBot} from '@/api/bot'
-import { selectData, radioData,botType } from '../operatingStatus/enum'
+import { addBot, updateBot } from '@/api/bot'
+import { selectData, radioData, botType } from '../operatingStatus/enum'
+import { useStore } from 'vuex'
 import Layer from '@/components/layer/index.vue'
 export default defineComponent({
   components: {
@@ -71,24 +39,15 @@ export default defineComponent({
     }
   },
   setup(props, ctx) {
-    const ruleForm= ref(null)
+    const store = useStore()
+    const hasTestRole = store.state.user.info.roles.includes('TEST');
+    const ruleForm = ref(null)
     const layerDom = ref(null)
     let form = ref({
       token: '',
-      username:'',
-      state:false,
-      botType:'talentBot',
-      // config:{
-      //   inviteFriendsSet:false,
-      //   followChannelSet:false,
-      //   invitationBonusSet:false,
-      //   deleteSeconds:6,
-      //   inviteFriendsAutoClearTime:3,
-      //   inviteFriendsQuantity:2,
-      //   inviteMembers:6,
-      //   inviteEarnedOutstand:1.2,
-      //   contactPerson:'@aa',
-      // },
+      username: '',
+      state: false,
+      botType: 'talentBot',
     })
     init()
     function init() { // 用于判断新增还是编辑功能
@@ -105,6 +64,7 @@ export default defineComponent({
       selectData,
       radioData,
       botType,
+      hasTestRole,
     }
   },
   methods: {
@@ -113,6 +73,15 @@ export default defineComponent({
         this.ruleForm.validate((valid) => {
           if (valid) {
             let params = this.form
+            if(this.form.botType == "coolbaoBot"){
+              if(!this.hasTestRole){
+                this.$message({
+                  type: 'error',
+                  message: '开发测试用,限制新增'
+                })
+                return false;
+              }
+            }
             if (this.layer.row) {
               this.updateForm(params)
             } else {
@@ -127,31 +96,29 @@ export default defineComponent({
     // 新增提交事件
     addForm(params) {
       addBot(params)
-      .then(res => {
-        this.$message({
-          type: 'success',
-          message: '新增成功'
+        .then(res => {
+          this.$message({
+            type: 'success',
+            message: '新增成功'
+          })
+          this.$emit('getTableData', true)
+          this.layerDom && this.layerDom.close()
         })
-        this.$emit('getTableData', true)
-        this.layerDom && this.layerDom.close()
-      })
     },
     // 编辑提交事件
     updateForm(params) {
       updateBot(params)
-      .then(res => {
-        this.$message({
-          type: 'success',
-          message: res.msg
+        .then(res => {
+          this.$message({
+            type: 'success',
+            message: res.msg
+          })
+          this.$emit('getTableData', false)
+          this.layerDom && this.layerDom.close()
         })
-        this.$emit('getTableData', false)
-        this.layerDom && this.layerDom.close()
-      })
     }
   }
 })
 </script>
 
-<style lang="scss" scoped>
-  
-</style>
+<style lang="scss" scoped></style>
