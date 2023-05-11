@@ -96,7 +96,7 @@ if (store.state.user.token) {
   addRoutes()
 }
 
-const whiteList = ['/login']
+const whiteList = ['/login','/payment']
 // const whiteList = ['/login','/jobSeekerForm','/jobPostingForm','/edit_jobSeekerForm','/edit_jobPostingForm']
 
 router.beforeEach((to, _from, next) => {

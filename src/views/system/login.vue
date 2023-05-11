@@ -49,8 +49,8 @@ export default defineComponent({
     const router = useRouter()
     const route = useRoute()
     const form = reactive({
-      username: 'admin',
-      password: '123456'
+      username: '',
+      password: ''
     })
     const passwordType = ref('password')
     const passwordTypeChange = () => {
