@@ -47,7 +47,7 @@ export default defineComponent({
       token: '',
       username: '',
       state: false,
-      botType: 'talentBot',
+      botType: 'talent',
     })
     init()
     function init() { // 用于判断新增还是编辑功能
@@ -73,11 +73,11 @@ export default defineComponent({
         this.ruleForm.validate((valid) => {
           if (valid) {
             let params = this.form
-            if(this.form.botType == "coolbaoBot"){
+            if(this.form.botType == "coolbao"){
               if(!this.hasTestRole){
                 this.$message({
                   type: 'error',
-                  message: '开发测试用,限制新增'
+                  message: '开发测试用'
                 })
                 return false;
               }
