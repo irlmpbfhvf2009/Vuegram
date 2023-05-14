@@ -1,5 +1,4 @@
 import vue from '@vitejs/plugin-vue'
-// import { defineConfig } from 'vite'
 import { viteMockServe } from 'vite-plugin-mock'
 import { resolve } from 'path'
 
@@ -10,7 +9,6 @@ const pathResolve = (dir) => {
 const alias = {
   '@': pathResolve("src")
 }
-// export default defineConfig => {
 export default ({ command }) => {
   const prodMock = true;
   return {
@@ -24,12 +22,11 @@ export default ({ command }) => {
       open: false,
       https: false,
       proxy: { // 代理配置
-        '/app': {
+        '/api': {
           target : 'http://localhost:8888',
           // target : 'http://rcc.ddb99.vip:18889',
           changeOrigin: true,
           ws: true,
-          // rewrite: (path) => path.replace(/^\/dev-api/,'')
         }
       },
     },
