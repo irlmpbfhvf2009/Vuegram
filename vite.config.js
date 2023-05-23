@@ -23,7 +23,7 @@ export default ({ command }) => {
       https: false,
       proxy: { // 代理配置
         '/api': {
-          target : 'http://localhost:8888',
+          target : 'http://localhost:5487',
           // target : 'http://rcc.ddb99.vip:18889',
           changeOrigin: true,
           ws: true,

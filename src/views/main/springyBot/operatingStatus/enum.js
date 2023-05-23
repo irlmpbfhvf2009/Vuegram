@@ -14,4 +14,5 @@ export const botType = [
     { value: 'talent', label: '人才机器人' },
     { value: 'triSpeak', label: 'TriSpeak' },
     { value: 'coolbao', label: '测试用' },
+    { value: 'telegrambot', label: '测试用2' },
 ]
