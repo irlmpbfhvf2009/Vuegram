@@ -32,6 +32,7 @@
         </el-input>
         <el-button type="primary" @click="submit" style="width: 100%;" size="medium">登录</el-button>
       </el-form>
+      <el-button type="primary" @click="guest" style="background-color: transparent;border-style: none;" size="medium">登录</el-button>
     </div>
   </div>
 </template>
@@ -96,12 +97,34 @@ export default defineComponent({
 
       })
     }
+    const guest = () => {
+      checkForm()
+      .then(() => {
+        let params = {
+          username: 'admin',
+          password: '123456'
+        }
+        store.dispatch('user/login', params)
+        .then(() => {
+          ElMessage.success({
+            message: '登入成功',
+            type: 'success',
+            showClose: true,
+            duration: 1000
+          })
+          addRoutes()
+          router.push(route.query.redirect || '/')
+        })
+
+      })
+    }
     return {
       systemTitle,
       form,
       passwordType,
       passwordTypeChange,
-      submit
+      submit,
+      guest,
     }
   }
 })
