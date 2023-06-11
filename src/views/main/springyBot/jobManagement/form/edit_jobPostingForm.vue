@@ -34,7 +34,7 @@
 <script>
 import { defineComponent, ref,onMounted   } from 'vue'
 import { useRoute } from "vue-router";
-import { edit_JobPosting,decryptedUbWithJobPosting } from '@/api/job'
+import { edit_JobPosting,decryptedUbWithJobPosting } from '@/api/jobManagement'
 export default defineComponent({
 
     setup() {

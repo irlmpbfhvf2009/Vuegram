@@ -18,7 +18,7 @@
 
 <script>
 import { defineComponent, ref } from 'vue'
-import { addBot, updateBot } from '@/api/bot'
+import { addBot, updateBot } from '@/api/springyBot'
 import { selectData, radioData, botType } from '../operatingStatus/enum'
 import { useStore } from 'vuex'
 import Layer from '@/components/layer/index.vue'

@@ -5,7 +5,7 @@ const baseURL = import.meta.env.VITE_BASE_URL
 
 const service = axios.create({
   baseURL: baseURL,
-  timeout: 5000
+  timeout: 50000
 })
 
 // 请求前的统一处理

@@ -4,7 +4,7 @@ import request from '@/utils/system/request'
 // 登入api
 export function loginApi(params) {
   return request({
-    url: '/admins/login',
+    url: '/admins/v1/login',
     method: 'post',
     params,
   })
@@ -12,7 +12,7 @@ export function loginApi(params) {
 // 退出登入Api
 export function loginOutApi(params) {
   return request({
-    url: '/admins/loginOut',
+    url: '/admins/v1/loginOut',
     method: 'post',
     params,
   })
@@ -20,7 +20,7 @@ export function loginOutApi(params) {
 // 獲取用户信息Api
 export function getInfoApi(params) {
   return request({
-    url: '/admins/info',
+    url: '/admins/v1/info',
     method: 'post',
     params
   })
@@ -28,7 +28,7 @@ export function getInfoApi(params) {
 // 新增
 export function addAdmin(data) {
   return request({
-    url: '/admins/addAdmin',
+    url: '/admins/v1/addAdmin',
     method: 'post',
     data,
   })
@@ -36,7 +36,7 @@ export function addAdmin(data) {
 // 查詢
 export function getAllAdmins(params) {
   return request({
-    url: '/admins/getAllAdmins',
+    url: '/admins/v1/getAllAdmins',
     method: 'post',
     params,
   })
@@ -44,7 +44,7 @@ export function getAllAdmins(params) {
 // 編輯
 export function updateAdmin(data) {
   return request({
-    url: '/admins/updateAdmin',
+    url: '/admins/v1/updateAdmin',
     method: 'post',
     data,
   })
@@ -53,7 +53,7 @@ export function updateAdmin(data) {
 // 删除
 export function delAdmin(data) {
   return request({
-    url: '/admins/delAdmin',
+    url: '/admins/v1/deleteAdmins',
     method: 'post',
     data
   })
@@ -61,7 +61,7 @@ export function delAdmin(data) {
 // 改密碼
 export function passwordChange(data) {
   return request({
-    url: '/admins/passwordChange',
+    url: '/admins/v1/passwordChange',
     method: 'post',
     data
   })

@@ -24,7 +24,7 @@
 
 <script>
 import { defineComponent, ref } from 'vue'
-import { updateAdmin, addAdmin } from '@/api/app'
+import { updateAdmin, addAdmin } from '@/api/admins'
 import { radioData, roles } from './enum'
 import { useStore } from 'vuex'
 import Layer from '@/components/layer/index.vue'

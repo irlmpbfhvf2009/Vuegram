@@ -18,7 +18,7 @@
 import { defineComponent, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useStore } from 'vuex'
-import { passwordChange } from '@/api/app'
+import { passwordChange } from '@/api/admins'
 import Layer from '@/components/layer/index.vue'
 export default defineComponent({
   components: {

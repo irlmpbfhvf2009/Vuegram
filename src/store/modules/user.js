@@ -1,4 +1,4 @@
-import { loginApi,getInfoApi,loginOutApi} from '@/api/app'
+import { loginApi,getInfoApi,loginOutApi} from '@/api/admins'
 
 const state = () => ({
   token: '', // 登录token

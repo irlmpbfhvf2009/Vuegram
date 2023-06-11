@@ -58,7 +58,7 @@
 import { defineComponent, ref, onMounted } from 'vue'
 import { useRoute } from "vue-router";
 import { radioData, nativePlace,educationOptions } from './enum'
-import { editAndPost_JobSeeker, decryptedUbWithJobSeeker } from '@/api/job'
+import { editAndPost_JobSeeker, decryptedUbWithJobSeeker } from '@/api/jobManagement'
 export default defineComponent({
 
     setup() {

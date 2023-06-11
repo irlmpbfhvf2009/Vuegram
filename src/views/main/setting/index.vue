@@ -57,7 +57,7 @@
 <script>
 import { defineComponent, ref, reactive } from 'vue'
 import Table from '@/components/table/index.vue'
-import { getAllAdmins,delAdmin } from '@/api/app'
+import { getAllAdmins,delAdmin } from '@/api/admins'
 import Layer from './layer.vue'
 import { ElMessage } from 'element-plus'
 export default defineComponent({

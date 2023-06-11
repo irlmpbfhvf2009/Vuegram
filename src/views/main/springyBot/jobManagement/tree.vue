@@ -22,7 +22,7 @@
 <script>
 import { defineComponent, ref, inject, nextTick } from "vue";
 // import { getTree } from "@/api/table";
-import { getJobTreeData } from "@/api/job";
+import { getJobTreeData } from "@/api/jobManagement";
 export default defineComponent({
   setup() {
     let data = ref([]);

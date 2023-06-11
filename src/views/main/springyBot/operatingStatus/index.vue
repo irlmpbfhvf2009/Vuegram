@@ -56,7 +56,7 @@
 <script>
 import { defineComponent, ref, reactive } from 'vue'
 import Table from '@/components/table/index.vue'
-import { getAllBot, deleteBot, start, stop } from '@/api/bot'
+import { getAllBot, deleteBot, start, stop } from '@/api/springyBot'
 import Layer from './layer.vue'
 import { ElMessage } from 'element-plus'
 export default defineComponent({

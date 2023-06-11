@@ -2,7 +2,7 @@ import request from '@/utils/system/request'
 // 获取数据api
 export function getAllBot(params) {
     return request({
-      url: '/springybot/getAllBot',
+      url: '/springybot/v1/getAllBot',
       method: 'post',
       params
     })
@@ -11,7 +11,7 @@ export function getAllBot(params) {
 // 新增bot
 export function addBot(data) {
   return request({
-    url: '/springybot/addBot',
+    url: '/springybot/v1/addBot',
     method: 'post',
     data,
   })
@@ -19,7 +19,7 @@ export function addBot(data) {
 // 删除
 export function deleteBot(data) {
     return request({
-      url: '/springybot/deleteBot',
+      url: '/springybot/v1/deleteBot',
       method: 'post',
       data
     })
@@ -27,7 +27,7 @@ export function deleteBot(data) {
   // 編輯
 export function updateBot(data) {
     return request({
-      url: '/springybot/updateBot',
+      url: '/springybot/v1/updateBot',
       method: 'post',
       data,
     })
@@ -35,7 +35,7 @@ export function updateBot(data) {
 // 啟動bot
 export function start(data) {
   return request({
-    url: '/springybot/start',
+    url: '/springybot/v1/start',
     method: 'post',
     data,
   })
@@ -43,7 +43,7 @@ export function start(data) {
 // 停止bot
 export function stop(data) {
   return request({
-    url: '/springybot/stop',
+    url: '/springybot/v1/stop',
     method: 'post',
     data,
   })
