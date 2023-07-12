@@ -1,12 +1,12 @@
 import request from '@/utils/system/request'
 // 获取数据api
 export function getAllBot(params) {
-    return request({
-      url: '/springybot/v1/getAllBot',
-      method: 'post',
-      params
-    })
-  }
+  return request({
+    url: '/springybot/v1/getAllBot',
+    method: 'post',
+    params
+  })
+}
 
 // 新增bot
 export function addBot(data) {
@@ -18,24 +18,40 @@ export function addBot(data) {
 }
 // 删除
 export function deleteBot(data) {
-    return request({
-      url: '/springybot/v1/deleteBot',
-      method: 'post',
-      data
-    })
-  }
-  // 編輯
+  return request({
+    url: '/springybot/v1/deleteBot',
+    method: 'post',
+    data
+  })
+}
+// 編輯
 export function updateBot(data) {
-    return request({
-      url: '/springybot/v1/updateBot',
-      method: 'post',
-      data,
-    })
-  }
+  return request({
+    url: '/springybot/v1/updateBot',
+    method: 'post',
+    data,
+  })
+}
+// 參數編輯
+export function updateConfig(data) {
+  return request({
+    url: '/springybot/v1/updateConfig',
+    method: 'post',
+    data,
+  })
+}
+// 查詢機器人管理的頻道
+export function fetchManagedChat(data) {
+  return request({
+    url: '/springybot/v1/fetchManagedChat',
+    method: 'post',
+    data,
+  })
+}
 // 啟動bot
 export function start(data) {
   return request({
-    url: '/springybot/v1/start',
+    url: '/springybot/v2/start',
     method: 'post',
     data,
   })

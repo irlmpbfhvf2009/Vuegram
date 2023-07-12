@@ -1,6 +1,6 @@
 import request from '@/utils/system/request'
 
-// 登录api
+// 登入api
 export function loginApi(data) {
   return request({
     url: '/user/login',
@@ -10,7 +10,7 @@ export function loginApi(data) {
   })
 }
 
-// 获取用户信息Api
+// 獲取用户信息Api
 export function getInfoApi(data) {
   return request({
     url: '/user/info',
@@ -20,7 +20,7 @@ export function getInfoApi(data) {
   })
 }
 
-// 退出登录Api
+// 退出登入Api
 export function loginOutApi() {
   return request({
     url: '/user/out',
@@ -29,7 +29,7 @@ export function loginOutApi() {
   })
 }
 
-// 获取用户信息Api
+// 獲取用户信息Api
 export function passwordChange(data) {
   return request({
     url: '/user/passwordChange',

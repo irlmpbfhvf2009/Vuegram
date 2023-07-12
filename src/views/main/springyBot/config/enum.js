@@ -13,10 +13,6 @@ export const radioData = [
 export const botType = [
     { value: 'talent', label: '人才机器人' },
     { value: 'triSpeak', label: 'TriSpeak' },
-    { value: 'coolbao', label: '测试' },
-    // { value: 'telegrambot', label: '测试用2' },
-]
-export const botModel = [
-    { value: 'LongPolling', label: 'LongPolling' },
-    { value: 'Webhook', label: 'Webhook' },
+    { value: 'coolbao', label: '测试用' },
+    { value: 'telegrambot', label: '测试用2' },
 ]

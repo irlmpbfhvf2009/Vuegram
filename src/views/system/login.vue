@@ -30,9 +30,9 @@
             <i class="sfont password-icon" :class="passwordType ? 'system-yanjing-guan': 'system-yanjing'" @click="passwordTypeChange"></i>
           </template>
         </el-input>
-        <el-button type="primary" @click="submit" style="width: 100%;" size="medium">登录</el-button>
+        <el-button type="primary" @click="submit" style="width: 100%;" size="medium">登入</el-button>
       </el-form>
-      <!-- <el-button type="primary" @click="guest" style="background-color: transparent;border-style: none;" size="medium">登录</el-button> -->
+      <!-- <el-button type="primary" @click="guest" style="background-color: transparent;border-style: none;" size="medium">登入</el-button> -->
     </div>
   </div>
 </template>

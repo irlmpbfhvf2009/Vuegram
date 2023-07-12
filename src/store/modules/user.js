@@ -1,7 +1,7 @@
 import { loginApi,getInfoApi,loginOutApi} from '@/api/admins'
 
 const state = () => ({
-  token: '', // 登录token
+  token: '', // 登入token
   info: {},  // 用户信息
 })
 

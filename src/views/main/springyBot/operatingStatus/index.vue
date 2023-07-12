@@ -13,37 +13,60 @@
     <div class="layout-container-table">
       <Table ref="table" v-model:page="page" v-loading="loading" :showIndex="true" :showSelection="true" :data="tableData"
         @getTableData="getTableData" @selection-change="handleSelectionChange">
-        <!-- <el-table-column prop="username" label="名称" align="center" /> -->
+
         <el-table-column label="名称" align="center">
           <template #default="{ row }">
             <div>
-              <div :class="['circle', row.state ? 'green' : 'red']"></div>
-              {{ row.username }}
+              {{ row.username }}{{ row.botId === null ? '' : " [ " + row.botId + " ] " }}
             </div>
+            
           </template>
         </el-table-column>
 
-        <el-table-column prop="token" label="Token" align="center" />
-        <!-- <el-table-column prop="state" label="状态" align="center" /> -->
-        <el-table-column label="状态" align="center">
+        <el-table-column label="Token" align="center">
           <template #default="scope">
-            <div class="status-indicator" :class="{ 'status-on': scope.row.state, 'status-off': !scope.row.state }">
-              <span>{{ scope.row.state ? '启动中' : '已停止' }}</span>
+            <el-tooltip class="item" :content="scope.row.token" placement="right">
+              <div class="truncate" ref="copyContent" @click="copyText(scope.row.token)">
+                <el-button>复制</el-button>
+              </div>
+            </el-tooltip>
+          </template>
+        </el-table-column>
+
+        <el-table-column prop="botType" label="类型" align="center">
+          <template #default="scope">
+            <template v-if="scope.row.botType === 'talent'">
+              人才招募
+            </template>
+            <template v-else-if="scope.row.botType === 'triSpeak'">
+              群组管理
+            </template>
+            <template v-else-if="scope.row.botType === 'coolbao'">
+              测试
+            </template>
+            <template v-else>
+              {{ scope.row.botType }}
+            </template>
+          </template>
+        </el-table-column>
+        <el-table-column label="运行模式" align="center">
+          <template #default="{ row }">
+            <div>
+              <div :class="['circle', row.state ? 'green' : 'red']"></div>
+              {{ row.botModel }}
+              <el-switch v-model="row.state" :active-value="true" :inactive-value="false"
+              @change="row.state ? handleStart(row) : handleStop(row)"></el-switch>
             </div>
           </template>
         </el-table-column>
         <el-table-column label="操作" align="center" fixed="right" width="275">
           <template #default="scope">
-            <!-- <el-button type="success" @click="handleStart(scope.row)">启动</el-button>
-            <el-button type="info" @click="handleStop(scope.row)">停止</el-button> -->
-            <el-button :type="scope.row.state ? 'info' : 'success'"
-              @click="scope.row.state ? handleStop(scope.row) : handleStart(scope.row)">{{ scope.row.state ? '停止' : '启动'
-              }}</el-button>
             <el-button type="primary" @click="handleEdit(scope.row)">编辑</el-button>
             <el-popconfirm title="删除" @confirm="handleDel([scope.row])">
               <template #reference>
                 <el-button type="danger">删除</el-button>
               </template>
+
             </el-popconfirm>
           </template>
         </el-table-column>
@@ -53,12 +76,15 @@
   </div>
 </template>
 
+
 <script>
 import { defineComponent, ref, reactive } from 'vue'
 import Table from '@/components/table/index.vue'
 import { getAllBot, deleteBot, start, stop } from '@/api/springyBot'
 import Layer from './layer.vue'
 import { ElMessage } from 'element-plus'
+import Clipboard from 'clipboard';
+
 export default defineComponent({
   name: 'crudTable',
   components: {
@@ -140,18 +166,48 @@ export default defineComponent({
     const handleStart = (row) => {
       start(row).then(res => {
         // console.log(res)
-        getTableData(true)
+        ElMessage({
+            type: 'success',
+            message: res.msg
+          })
       })
     }
     const handleStop = (row) => {
       stop(row).then(res => {
         // console.log(res)
-        location.reload()
+        ElMessage({
+            type: 'success',
+            message: res.msg
+          })
+        // location.reload()
       }).catch(error => {
         console.log(error)
       })
     }
     getTableData(true)
+
+    const copyText = (text) => {
+      const clipboard = new Clipboard('.truncate', {
+        text: () => text
+      });
+
+      clipboard.on('success', () => {
+        ElMessage({
+          type: 'success',
+          message: '已成功复制到剪贴板'
+        })
+        clipboard.destroy();
+      });
+
+      clipboard.on('error', () => {
+        ElMessage({
+          type: 'error',
+          message: '复制失败，请手动复制'
+        })
+        clipboard.destroy();
+      });
+
+    };
     return {
       tableData,
       chooseData,
@@ -164,39 +220,13 @@ export default defineComponent({
       handleDel,
       handleStart,
       handleStop,
-      getTableData
+      getTableData,
+      copyText,
     }
   }
 })
 </script>
 
-<style lang="scss" scoped>
-.status-indicator {
-  display: inline-flex;
-  align-items: center;
-}
-
-.status-on {
-  color: green;
-}
-
-.status-off {
-  color: red;
-}
-
-.circle {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin-right: 1px;
-}
-
-.green {
-  background-color: green;
-}
-
-.red {
-  background-color: red;
-}
+<style lang="css" scoped>
+@import "styles.css";
 </style>

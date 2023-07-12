@@ -7,6 +7,11 @@
       <el-form-item label="Token：" prop="token">
         <el-input v-model="form.token" placeholder="请输入Token"></el-input>
       </el-form-item>
+      <el-form-item label="模式：" prop="botModel">
+        <el-radio-group v-model="form.botModel">
+          <el-radio v-for="item in botModel" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
+        </el-radio-group>
+      </el-form-item>
       <el-form-item label="机器人类型：" prop="botType">
         <el-radio-group v-model="form.botType">
           <el-radio v-for="item in botType" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
@@ -19,7 +24,7 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import { addBot, updateBot } from '@/api/springyBot'
-import { selectData, radioData, botType } from '../operatingStatus/enum'
+import { selectData, radioData, botType, botModel } from '../operatingStatus/enum'
 import { useStore } from 'vuex'
 import Layer from '@/components/layer/index.vue'
 export default defineComponent({
@@ -48,6 +53,7 @@ export default defineComponent({
       username: '',
       state: false,
       botType: 'talent',
+      botModel: 'LongPolling',
     })
     init()
     function init() { // 用于判断新增还是编辑功能
@@ -64,6 +70,7 @@ export default defineComponent({
       selectData,
       radioData,
       botType,
+      botModel,
       hasTestRole,
     }
   },
@@ -78,6 +85,15 @@ export default defineComponent({
                 this.$message({
                   type: 'error',
                   message: '开发测试用'
+                })
+                return false;
+              }
+            }
+            if(this.form.botModel == "Webhook"){
+              if(!this.hasTestRole){
+                this.$message({
+                  type: 'error',
+                  message: '模式维护中'
                 })
                 return false;
               }

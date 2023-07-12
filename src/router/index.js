@@ -8,7 +8,7 @@ import store from '@/store'
 import NProgress from '@/utils/system/nprogress'
 import { changeTitle,formTitle } from '@/utils/system/title'
 
-// 动态路由相关引入数据
+// 動態路由相關引入數據
 import Layout from '@/layout/index.vue'
 import MenuBox from '@/components/menu/index.vue'
 import { createNameComponent } from './createNode'
@@ -36,7 +36,7 @@ let asyncRoutes = [
   ...Pages,
   ...Setting,
 ]
-// 动态路由的权限新增，供登录后调用
+// 動態路由的權限新增，供登入后調用
 export function addRoutes() {
   
   // let data = [
@@ -74,7 +74,7 @@ export function addRoutes() {
   })
 }
 
-// 重置匹配所有路由的解决方案，todo
+// 重置匹配所有路由的解決方案，todo
 function eachData(data, type) {
   data.forEach(d => {
     if (d.children && d.children.length > 0) {
@@ -102,12 +102,12 @@ const whiteList = ['/login','/payment']
 router.beforeEach((to, _from, next) => {
   NProgress.start();
   if (store.state.user.token || whiteList.indexOf(to.path) !== -1) {
-    to.meta.title ? (formTitle(to.meta.title)) : ""; // 动态title
-    // to.meta.title ? (changeTitle(to.meta.title)) : ""; // 动态title
+    to.meta.title ? (formTitle(to.meta.title)) : ""; // 動態title
+    // to.meta.title ? (changeTitle(to.meta.title)) : ""; // 動態title
     next()
   } else {
-    next("/login"); // 全部重定向到登录页
-    to.meta.title ? (changeTitle(to.meta.title)) : ""; // 动态title
+    next("/login"); // 全部重定向到登入頁
+    to.meta.title ? (changeTitle(to.meta.title)) : ""; // 動態title
   }
 });
 
