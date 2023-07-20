@@ -38,6 +38,9 @@
             <template v-if="scope.row.botType === 'talent'">
               人才招募
             </template>
+            <template v-if="scope.row.botType === 'demand'">
+              供应需求
+            </template>
             <template v-else-if="scope.row.botType === 'triSpeak'">
               群组管理
             </template>

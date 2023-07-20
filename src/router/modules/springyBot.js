@@ -30,7 +30,7 @@ const route = [
       },
       {
         path: 'bonusSettlement',
-        component: createNameComponent(() => import('@/views/main/springyBot/jobManagement/index.vue')),
+        component: createNameComponent(() => import('@/views/main/springyBot/bonusSettlement/index.vue')),
         meta: { title: '奖金结算', cache: true, roles: ['ADMIN'] }
       },
     ]

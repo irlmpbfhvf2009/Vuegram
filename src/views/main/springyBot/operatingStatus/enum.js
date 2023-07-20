@@ -12,6 +12,7 @@ export const radioData = [
 
 export const botType = [
     { value: 'talent', label: '人才机器人' },
+    { value: 'demand', label: '供应需求机器人' },
     { value: 'triSpeak', label: 'TriSpeak' },
     { value: 'coolbao', label: '测试' },
     // { value: 'telegrambot', label: '测试用2' },
