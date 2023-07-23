@@ -4,10 +4,11 @@
       <template v-for="item in formItems">
         <el-form-item :label="item.label" :prop="item.prop" v-if="layer.type === item.type">
           <template v-if="item.component === 'el-select'">
-            {{ form.followChannelSet_chatTitle }} 
-            <el-select v-model="form.followChannelSet_chatTitle" placeholder="请选择">
-              <el-option v-for="option in item.options" :key="option.value" :label="option.label"
-                :value="option.value"></el-option>
+            <el-select v-model="form.followChannelSet_chatId" placeholder="请选择">
+              <el-option :key="0" :label="'请选择'" :value="0"></el-option>
+              <el-option v-for="chatEntry in chatList" :key="chatEntry.id" :label="chatEntry.channelTitle"
+                :value="chatEntry.channelId">
+              </el-option>
             </el-select>
           </template>
           <template v-else>
@@ -64,11 +65,9 @@ export default defineComponent({
       if (props.layer.row) {
         form.value = JSON.parse(JSON.stringify(props.layer.row.config)) // 数量量少的直接使用这个转
         fetchManagedChat(props.layer.row.config)
-          .then(res=>{
-            console.log(res)
+          .then(res => {
+            chatList.value = res.data.list;
           })
-        // chatList.value = fetchManagedChat(props.layer.row.config)
-        console.log(form.value)
       }
     }
     return {
@@ -77,6 +76,7 @@ export default defineComponent({
       ruleForm,
       botType,
       formItems,
+      chatList,
     }
   },
   methods: {

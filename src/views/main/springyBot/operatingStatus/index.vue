@@ -47,9 +47,9 @@
             <template v-else-if="scope.row.botType === 'coolbao'">
               测试
             </template>
-            <template v-else>
+            <!-- <template v-else>
               {{ scope.row.botType }}
-            </template>
+            </template> -->
           </template>
         </el-table-column>
         <el-table-column label="运行模式" align="center">
