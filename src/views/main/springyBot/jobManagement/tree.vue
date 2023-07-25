@@ -41,7 +41,6 @@ export default defineComponent({
         active.value = res.data[0];
         nextTick(() => {
           tree.value && tree.value.setCurrentKey(active.value.id)
-          console.log(tree.value)
         })
       });
 

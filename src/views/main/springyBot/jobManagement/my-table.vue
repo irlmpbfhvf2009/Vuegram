@@ -45,7 +45,6 @@ export default defineComponent({
     const tableData = ref([])
     const chooseData = ref([])
     const handleSelectionChange = (val) => {
-      console.log(val)
       chooseData.value = val
     }
     // 获取表格数据
@@ -62,7 +61,6 @@ export default defineComponent({
 
 
     watch(activeCategory, (newVal) => {
-      console.log(newVal)
       getTableData(true, newVal)
     })
     return {
